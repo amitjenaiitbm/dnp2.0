@@ -6,6 +6,171 @@ from fpdf import FPDF
 
 WIDTH = 210
 HEIGHT = 297
+NA_desc_text = "Note: NA refers to data is unavailable for a given round of NFHS data."
+
+def round_str(value):
+    if value != '':
+        return(str("{:,}".format(round(float(value)))))
+    else:
+        return("NA")
+def draw_gridlines(pdf, x1, y1, y2):
+        # Draw vertical grids
+        pdf.set_draw_color(241, 240, 236)
+        pdf.set_line_width(0.5)
+        pdf.line(x1, y1, x1, y2)
+        pdf.line(x1+10, y1, x1+10, y2)
+        pdf.line(x1+20, y1, x1+20, y2)
+        pdf.line(x1+30, y1, x1+30, y2)
+        pdf.line(x1+40, y1, x1+40, y2)
+        pdf.line(x1+50, y1, x1+50, y2)
+        #
+        pdf.set_draw_color(109, 111, 113)
+        pdf.line(x1, y2, x1+50, y2)
+        #
+        pdf.set_draw_color(109, 111, 113)
+        pdf.line(x1, y2, x1, y2+1)
+        pdf.line(x1+10, y2, x1+10, y2+1)
+        pdf.line(x1+20, y2, x1+20, y2+1)
+        pdf.line(x1+30, y2, x1+30, y2+1)
+        pdf.line(x1+40, y2, x1+40, y2+1)
+        pdf.line(x1+50, y2, x1+50, y2+1)
+        #
+        pdf.set_font('Roboto-Regular', '', 8)
+        pdf.set_text_color(109, 111, 113)
+        pdf.set_xy(x1-3, y2+2)
+        pdf.cell(4, 3, "0%", align="L")
+        pdf.set_xy(x1+10-3, y2+2)
+        pdf.cell(4, 3, "20%", align="L")
+        pdf.set_xy(x1+20-3, y2+2)
+        pdf.cell(4, 3, "40%", align="L")
+        pdf.set_xy(x1+30-3, y2+2)
+        pdf.cell(4, 3, "60%", align="L")
+        pdf.set_xy(x1+40-3, y2+2)
+        pdf.cell(4, 3, "80%", align="L")
+        pdf.set_xy(x1+50-3, y2+2)
+        pdf.cell(4, 3, "100%", align="L")
+
+def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
+    if district_2016 != '':
+        x2 = x1+(0.5*float(district_2016))
+        # Place green circle image
+        pdf.image("./resources/green_circle.png", x=x2-1, y=y1-1.5, w=3)
+        # Write the district value of 2016
+        pdf.set_font('Roboto-Regular', '', 8)
+        pdf.set_text_color(136, 180, 64)
+        percent_text_pos = x2 - 5
+        pdf.set_xy(percent_text_pos, y1-1.5)
+        pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="C")
+
+    if district_2019 != '':
+        x2 = x1+(0.5*float(district_2019))
+        # Place green circle image
+        pdf.image("./resources/orange_circle.png", x=x2-1, y=y1-1.5, w=3)
+        # Write the district value of 2016
+        pdf.set_font('Roboto-Regular', '', 8)
+        pdf.set_text_color(231, 121, 37)
+        percent_text_pos = x2 + 5
+        pdf.set_xy(percent_text_pos, y1-1.5)
+        pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="C")
+
+    # Draw the connecting arrow
+    if (district_2016 != '') and (district_2019 != ''):
+        
+
+    # Print NA (2016) and NA (2019) if both are NOT available
+    if (district_2016 == '') and (district_2019 == ''):
+        # Print green NA (2016)
+        pdf.set_font('Roboto-Regular', '', 8)
+        pdf.set_text_color(136, 180, 64)
+        pdf.set_xy(x1, y1)
+        pdf.cell(4, 3, "NA", align="L")
+        # Print orange NA (2019)
+        pdf.set_text_color(231, 121, 37)
+        pdf.set_xy(x1+10, y1)
+        pdf.cell(4, 3, "NA", align="L")
+
+def draw_green_lollipop(pdf, x1, y1, district_2016, state_2016):
+    if district_2016 != '':
+        x2 = x1+(0.5*float(district_2016))
+        # Draw green line
+        pdf.set_draw_color(136, 180, 64)
+        pdf.set_line_width(0.75)
+        pdf.line(x1, y1, x2, y1)
+        # Place green circle image
+        pdf.image("./resources/green_circle.png", x=x2-1, y=y1-1.5, w=3)
+        # Draw state mark in grey
+        x3 = x1+(0.5*float(state_2016))
+        pdf.set_draw_color(109, 111, 113)
+        pdf.set_line_width(0.75)
+        pdf.line(x3, y1-1.5, x3, y1+1.5)
+        # Write the district value of 2016
+        pdf.set_font('Roboto-Regular', '', 8)
+        pdf.set_text_color(136, 180, 64)
+        percent_text_pos = x2 + 3
+        pdf.set_xy(percent_text_pos, y1-1.5)
+        pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
+    else:
+        # Print NA
+        pdf.set_font('Roboto-Regular', '', 8)
+        pdf.set_text_color(136, 180, 64)
+        pdf.set_xy(x1, y1)
+        pdf.cell(4, 3, "NA", align="L")
+
+def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
+    if district_2019 != '':
+        x2 = x1+(0.5*float(district_2019))
+        # Draw green line
+        pdf.set_draw_color(231, 121, 37)
+        pdf.set_line_width(0.75)
+        pdf.line(x1, y1, x2, y1)
+        # Place green circle image
+        pdf.image("./resources/orange_circle.png", x=x2-1, y=y1-1.5, w=3)
+        # Draw state mark in grey
+        x3 = x1+(0.5*float(state_2019))
+        pdf.set_draw_color(109, 111, 113)
+        pdf.set_line_width(0.75)
+        pdf.line(x3, y1-1.5, x3, y1+1.5)
+        # Write the district value of 2019
+        pdf.set_font('Roboto-Regular', '', 8)
+        pdf.set_text_color(231, 121, 37)
+        percent_text_pos = x2 + 3
+        pdf.set_xy(percent_text_pos, y1-1.5)
+        pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
+    else:
+        # Print NA
+        pdf.set_font('Roboto-Regular', '', 8)
+        pdf.set_text_color(231, 121, 37)
+        pdf.set_xy(x1, y1)
+        pdf.cell(4, 3, "NA", align="L")
+
+def put_legends(pdf, state_name, put_state_name, y):
+    if put_state_name == 1:
+        # Write state's Name
+        state_len = len(state_name)
+        x = WIDTH - 7 - state_len
+        pdf.set_font('Roboto-Bold', 'B', 8)
+        pdf.set_text_color(0, 0, 0)
+        pdf.set_xy(x-5, y-1.5)
+        pdf.cell(state_len+5, 4, state_name, align="R")
+        # Put vertical grey line
+        x1 = WIDTH - 10 - state_len*1.5
+        pdf.set_draw_color(109, 111, 113)
+        pdf.set_line_width(0.75)
+        pdf.line(x1, y-1.5, x1, y+1.5)
+
+    #Put 2016 and 2019 legends
+    # Write 2016
+    pdf.image("./resources/green_circle.png", x=WIDTH-18, y=y+5, w=8)
+    pdf.set_font('Roboto-Bold', 'B', 8)
+    pdf.set_text_color(255, 255, 255)
+    pdf.set_xy(WIDTH-16, y+7)
+    pdf.cell(4, 4, "2016", align="C")
+    # Write 2019
+    pdf.image("./resources/orange_circle.png", x=WIDTH-18, y=y+15, w=8)
+    pdf.set_font('Roboto-Bold', 'B', 8)
+    pdf.set_text_color(255, 255, 255)
+    pdf.set_xy(WIDTH-16, y+17)
+    pdf.cell(4, 4, "2019", align="C")
 
 def create_first_page(pdf):
     #Top banner
@@ -265,6 +430,53 @@ def create_second_page(pdf):
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
+    # Put Top legends
+    put_legends(pdf, district[1], 1, 20)
+
+    # Put the burden details
+    # Background box image
+    pdf.image("./resources/burden_top2.png", x=WIDTH-85, y=60, w=77)
+    # Burden text: Title
+    burden_title_top = "Burden on nutrition outcomes (2020)"
+    pdf.set_font('Roboto-Regular', '', 10)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(WIDTH-86, 51)
+    pdf.cell(80, 10, burden_title_top, align='C')
+    # Burden text: Table header
+    pdf.set_font('Roboto-Bold', 'B', 8)
+    pdf.set_text_color(255, 255, 255)
+    pdf.set_xy(WIDTH-86.5, 57.5)
+    pdf.cell(40, 10, "Indicators", align='C')
+    pdf.cell(40, 10, "No. of children (<5 yrs)", align='C')
+    # Burden text: Table rows
+    pdf.set_font('Roboto-Regular', '', 8)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(WIDTH-84, 63.5)
+    pdf.cell(40, 10, "Low-birth weight", align='L')
+    pdf.cell(40, 10, "NA", align='L')
+    pdf.set_xy(WIDTH-84, 69.5)
+    pdf.cell(40, 10, "Stunted", align='L')
+    pdf.cell(40, 10, round_str(district[13]), align='L')
+    pdf.set_xy(WIDTH-84, 75)
+    pdf.cell(40, 10, "Wasted", align='L')
+    pdf.cell(40, 10, round_str(district[16]), align='L')
+    pdf.set_xy(WIDTH-84, 81)
+    pdf.cell(40, 10, "Severely wasted", align='L')
+    pdf.cell(40, 10, round_str(district[19]), align='L')
+    pdf.set_xy(WIDTH-84, 86.5)
+    pdf.cell(40, 10, "Underweight", align='L')
+    pdf.cell(40, 10, round_str(district[22]), align='L')
+    pdf.set_xy(WIDTH-84, 92.5)
+    pdf.cell(40, 10, "Overweight/obesity", align='L')
+    pdf.cell(40, 10, round_str(district[25]), align='L')
+    pdf.set_xy(WIDTH-84, 98.5)
+    pdf.cell(40, 10, "Anemia", align='L')
+    pdf.cell(40, 10, round_str(district[28]), align='L')
+    pdf.set_xy(WIDTH-84, 104)
+    pdf.set_font('Roboto-Bold', 'B', 8)
+    pdf.cell(40, 10, "Total children", align='L')
+    pdf.cell(40, 10, round_str(district[29]), align='L')
+
     # Top section - indicator labels
     ch_lowbirth = "Low-birth weight"
     ch_stunt = "Stunted"
@@ -275,11 +487,17 @@ def create_second_page(pdf):
     ch_anemic = "Anemia"
 
     # Place indicator labels at Place
+    ch_indicator_x = 10
+    ch_indicator_y = 18
+    ch_cell_width = 50
+    ch_lollipop_gap = ch_indicator_x + 53
+
+    # Put the grid lines
+    draw_gridlines(pdf, ch_lollipop_gap, 19, 118)
+
+    # Put the list of indicators
     pdf.set_font('Roboto-Regular', '', 10)
     pdf.set_text_color(0, 0, 0)
-    ch_indicator_x = 10
-    ch_indicator_y = 15
-    ch_cell_width = 50
     pdf.set_xy(ch_indicator_x, ch_indicator_y)
     pdf.cell(ch_cell_width, 10, ch_lowbirth, align='R')
     pdf.set_xy(ch_indicator_x, ch_indicator_y+15)
@@ -295,21 +513,52 @@ def create_second_page(pdf):
     pdf.set_xy(ch_indicator_x, ch_indicator_y+90)
     pdf.cell(ch_cell_width, 10, ch_anemic, align='R')
 
+    # Put the lollipops
+    # ch_lowbirth = "Low-birth weight"
+    draw_green_lollipop(pdf, ch_lollipop_gap, 20, '', '')
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 24, '', '')
+    # ch_stunt = "Stunted"
+    draw_green_lollipop(pdf, ch_lollipop_gap, 36, district[11], state[3])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 40, district[12], state[4])
+    # ch_waste = "Wasted"
+    draw_green_lollipop(pdf, ch_lollipop_gap, 50, district[14], state[5])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 54, district[15], state[6])
+    # ch_wastesev = "Severely wasted"
+    draw_green_lollipop(pdf, ch_lollipop_gap, 66, district[17], state[7])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 70, district[18], state[8])
+    # ch_uweight = "Underweight"
+    draw_green_lollipop(pdf, ch_lollipop_gap, 81, district[20], state[9])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 85, district[21], state[10])
+    # ch_over = "Overweight/obesity"
+    draw_green_lollipop(pdf, ch_lollipop_gap, 96, district[23], state[11])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 100, district[24], state[12])
+    # ch_anemic = "Anemia"
+    draw_green_lollipop(pdf, ch_lollipop_gap, 111, district[26], state[13])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 115, district[27], state[14])
+
+    # Note for NA description
+    pdf.set_font('Roboto-Bold', 'B', 7)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(125, 126)
+    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
+    pdf.set_font('Roboto-Regular', '', 7)
+    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
+
     # Top Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
     pdf.set_fill_color(183, 179, 160)
-    pdf.rect(x=7, y=121, w=WIDTH-14, h=15, style='F')
+    pdf.rect(x=7, y=134, w=WIDTH-14, h=15, style='F')
     # Bottom Points of discussion: text
     pdf.set_font('Roboto-Bold', 'B', 9)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(10, 122)
+    pdf.set_xy(10, 135)
     pdf.cell(50, 5, "Points of discussion:", align='L')
     ch_pd1_text2 = "• What are the trends in undernutrition among children under five years of age (stunting, wasting, underweight, and anemia)?"
     ch_pd2_text2 = "• What are the trends in overweight/obesity among children under five years of age in the district?"
     pdf.set_font('Roboto-Regular', '', 9)
-    pdf.set_xy(12, 126)
+    pdf.set_xy(12, 139)
     pdf.cell(180, 5, ch_pd1_text2, align='L')
-    pdf.set_xy(12, 130)
+    pdf.set_xy(12, 143)
     pdf.cell(200, 5, ch_pd2_text2, align='L')
 
     #
@@ -327,6 +576,53 @@ def create_second_page(pdf):
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
+    # Put Bottom legends
+    put_legends(pdf, district[1], 1, 165)
+
+    # Put the burden details
+    # Background box image
+    pdf.image("./resources/burden_bottom2.png", x=WIDTH-85, y=198, w=77)
+    # Burden text: Title
+    burden_title_bottom = "Burden on nutrition outcomes (2020)"
+    pdf.set_font('Roboto-Regular', '', 10)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(WIDTH-86, 189)
+    pdf.cell(80, 10, burden_title_bottom, align='C')
+    # Burden text: Table header
+    pdf.set_font('Roboto-Bold', 'B', 8)
+    pdf.set_text_color(255, 255, 255)
+    pdf.set_xy(WIDTH-86.5, 195.5)
+    pdf.cell(40, 10, "Indicators", align='C')
+    pdf.cell(40, 10, "No. of women (15-49 yrs)", align='C')
+    # Burden text: Table rows
+    pdf.set_font('Roboto-Regular', '', 8)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(WIDTH-84, 201.5)
+    pdf.cell(40, 10, "Underweight", align='L')
+    pdf.cell(40, 10, round_str(district[32]), align='L')
+    pdf.set_xy(WIDTH-84, 207.5)
+    pdf.cell(40, 10, "Overweight/obesity", align='L')
+    pdf.cell(40, 10, round_str(district[35]), align='L')
+    pdf.set_xy(WIDTH-84, 213)
+    pdf.cell(40, 10, "Hypertension", align='L')
+    pdf.cell(40, 10, round_str(district[37]), align='L')
+    pdf.set_xy(WIDTH-84, 218.5)
+    pdf.cell(40, 10, "Diabetes", align='L')
+    pdf.cell(40, 10, round_str(district[39]), align='L')
+    pdf.set_xy(WIDTH-84, 224.5)
+    pdf.cell(40, 10, "Anemia (non-preg)", align='L')
+    pdf.cell(40, 10, round_str(district[42]), align='L')
+    pdf.set_xy(WIDTH-84, 230.5)
+    pdf.cell(40, 10, "Anemia (preg)", align='L')
+    pdf.cell(40, 10, round_str(district[45]), align='L')
+    pdf.set_xy(WIDTH-84, 236)
+    pdf.set_font('Roboto-Bold', 'B', 8)
+    pdf.cell(40, 10, "Total women (preg)", align='L')
+    pdf.cell(40, 10, round_str(district[46]), align='L')
+    pdf.set_xy(WIDTH-84, 242)
+    pdf.cell(40, 10, "Total women", align='L')
+    pdf.cell(40, 10, round_str(district[47]), align='L')
+
     # Bottom section - indicator labels
     bmi_f_lowbmiout = "Underweight (BMI <18.5 kg/m²)"
     bmi_f_highbmi = "Overweight/obesity"
@@ -336,11 +632,17 @@ def create_second_page(pdf):
     preg_anemia = "Anemia (pregnant)"
 
     # Place indicator labels at Place
+    wo_indicator_x = 10
+    wo_indicator_y = 165
+    wo_cell_width = 50
+    wo_lollipop_gap = wo_indicator_x + 53
+
+    # Put the grid lines
+    draw_gridlines(pdf, wo_lollipop_gap, 165, 250)
+
+    # Put the list of indicators
     pdf.set_font('Roboto-Regular', '', 10)
     pdf.set_text_color(0, 0, 0)
-    wo_indicator_x = 10
-    wo_indicator_y = 155
-    wo_cell_width = 50
     pdf.set_xy(wo_indicator_x, wo_indicator_y)
     pdf.cell(wo_cell_width, 10, bmi_f_lowbmiout, align='R')
     pdf.set_xy(wo_indicator_x, wo_indicator_y+15)
@@ -353,6 +655,34 @@ def create_second_page(pdf):
     pdf.cell(wo_cell_width, 10, hb_f_anemia, align='R')
     pdf.set_xy(wo_indicator_x, wo_indicator_y+75)
     pdf.cell(wo_cell_width, 10, preg_anemia, align='R')
+
+    # Put the lollipops
+    # bmi_f_lowbmiout = "Underweight (BMI <18.5 kg/m²)"
+    draw_green_lollipop(pdf, wo_lollipop_gap, 168, district[30], state[15])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 172, district[31], state[16])
+    # bmi_f_highbmi = "Overweight/obesity"
+    draw_green_lollipop(pdf, wo_lollipop_gap, 183, district[33], state[17])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 187, district[34], state[18])
+    # hypertension_women = "Hypertension"
+    draw_green_lollipop(pdf, wo_lollipop_gap, 198, '', '')
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 202, district[36], state[19])
+    # diabetes_women = "Diabetes"
+    draw_green_lollipop(pdf, wo_lollipop_gap, 213, '', '')
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 217, district[38], state[20])
+    # hb_f_anemia = "Anemia (non-pregnant)"
+    draw_green_lollipop(pdf, wo_lollipop_gap, 228, district[40], state[21])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 232, district[41], state[22])
+    # preg_anemia = "Anemia (pregnant)"
+    draw_green_lollipop(pdf, wo_lollipop_gap, 243, district[43], state[23])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 247, district[44], state[24])
+
+    # Note for NA description
+    pdf.set_font('Roboto-Bold', 'B', 7)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(125, 265)
+    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
+    pdf.set_font('Roboto-Regular', '', 7)
+    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -399,6 +729,9 @@ def create_third_page(pdf):
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
+    # Put Top legends
+    put_legends(pdf, district[1], 1, 20)
+
     # Top section - indicator labels
     take100_IFA_preg = "Consumed IFA 100+ days (pregnant women)"
     ifa_180 = "Consumed IFA 180+ days (pregnant women)"
@@ -414,11 +747,17 @@ def create_third_page(pdf):
     botfeed_623 = "Bottle feeding of infants, 6-23 m"
 
     # Place indicator labels at Place
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_text_color(0, 0, 0)
     im_indicator_x = 15
     im_indicator_y = 15
     im_cell_width = 70
+    im_lollipop_gap = im_indicator_x + 73
+
+    # Put the grid lines
+    draw_gridlines(pdf, im_lollipop_gap, 17, 135)
+
+    # Put the indicators
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_font('Roboto-Regular', '', 10)
     pdf.set_xy(im_indicator_x, im_indicator_y)
     pdf.cell(im_cell_width, 10, take100_IFA_preg, align='R')
     pdf.set_xy(im_indicator_x, im_indicator_y+10)
@@ -443,41 +782,89 @@ def create_third_page(pdf):
     pdf.cell(im_cell_width, 10, bev_623, align='R')
     pdf.set_xy(im_indicator_x, im_indicator_y+110)
     pdf.cell(im_cell_width, 10, botfeed_623, align='R')
+    # Put the lollipops
+    # take100_IFA_preg = "Consumed IFA 100+ days (pregnant women)"
+    draw_green_lollipop(pdf, im_lollipop_gap, 18, district[48], state[25])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 22, district[49], state[26])
+    # ifa_180 = "Consumed IFA 180+ days (pregnant women)"
+    draw_green_lollipop(pdf, im_lollipop_gap, 28, district[50], state[27])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 32, district[51], state[28])
+    # iycf_earlybf35 = "Early initiation of breastfeeding (children < 3 yr)"
+    draw_green_lollipop(pdf, im_lollipop_gap, 38, district[52], state[29])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 42, district[53], state[30])
+    # iycf_exclbf0 = "Exclusive breastfeeding"
+    draw_green_lollipop(pdf, im_lollipop_gap, 48, district[54], state[31])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 52, district[55], state[32])
+    # brestfeed12 = "Continued breastfeeding at 2 years"
+    draw_green_lollipop(pdf, im_lollipop_gap, 58, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 62, '', '')
+    # n_iycf_introfood = "Timely introduction of complementary foods"
+    draw_green_lollipop(pdf, im_lollipop_gap, 68, district[56], state[33])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 72, district[57], state[34])
+    # n_iycf_minaccdiet0 = "Adequate diet (children)"
+    draw_green_lollipop(pdf, im_lollipop_gap, 78, district[58], state[35])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 82, district[59], state[36])
+    # ch_dietary = "Dietary diversity (children)"
+    draw_green_lollipop(pdf, im_lollipop_gap, 88, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 92, '', '')
+    # ch_meal_freq = "Minimum meal frequency (children)"
+    draw_green_lollipop(pdf, im_lollipop_gap, 98, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 102, '', '')
+    # food_623 = "Eggs and/or flesh foods consumption, 6-23 m"
+    draw_green_lollipop(pdf, im_lollipop_gap, 108, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 112, '', '')
+    # bev_623 = "Sweet beverage consumption, 6-23 m"
+    draw_green_lollipop(pdf, im_lollipop_gap, 118, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 122, '', '')
+    # botfeed_623 = "Bottle feeding of infants, 6-23 m"
+    draw_green_lollipop(pdf, im_lollipop_gap, 128, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 132, '', '')
+
+    # Note for NA description
+    pdf.set_font('Roboto-Bold', 'B', 7)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(125, 137)
+    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
+    pdf.set_font('Roboto-Regular', '', 7)
+    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
 
     # Top Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
     pdf.set_fill_color(183, 179, 160)
-    pdf.rect(x=7, y=141, w=WIDTH-14, h=21, style='F')
+    pdf.rect(x=7, y=144, w=WIDTH-14, h=21, style='F')
     # Top Points of discussion: text
     pdf.set_font('Roboto-Bold', 'B', 9)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(10, 141)
+    pdf.set_xy(10, 144)
     pdf.cell(50, 5, "Points of discussion:", align='L')
     im_pd1_text3 = "• What are the trends in infant and young child feeding (timely initiation of breastfeeding, exclusive breastfeeding, timely initiation of complementary feeding, and adequate diet)? What can be done to improve infant and young child feeding?"
     im_pd2_text3 = "• What are the trends in IFA consumption among pregnant women in the district? How can the consumption be improved?"
     im_pd3_text3 = "• What additional data are needed to understand diets and/or other determinants?"
     pdf.set_font('Roboto-Regular', '', 9)
-    pdf.set_xy(12, 145)
+    pdf.set_xy(12, 148)
     pdf.cell(165, 5, im_pd1_text3[0:140], align='L')
-    pdf.set_xy(14, 149)
+    pdf.set_xy(14, 152)
     pdf.cell(165, 5, im_pd1_text3[140:], align='L')
-    pdf.set_xy(12, 153)
+    pdf.set_xy(12, 156)
     pdf.cell(165, 5, im_pd2_text3, align='L')
-    pdf.set_xy(12, 157)
+    pdf.set_xy(12, 160)
     pdf.cell(165, 5, im_pd3_text3, align='L')
 
     # Add bottom bar
     pdf.set_draw_color(152, 56, 87)
     pdf.set_fill_color(152, 56, 87)
-    pdf.rect(x=7, y=170, w=WIDTH-14, h=10, style='F')
+    pdf.rect(x=7, y=166, w=WIDTH-14, h=10, style='F')
     # Add text into the bottom bar
     bottom_Bar3_text = "Underlying determinants"
     pdf.set_font('Roboto-Bold', 'B', 13)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(10, 170)
+    pdf.set_xy(10, 166)
     pdf.cell(100, 10, bottom_Bar3_text, align='L')
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
+
+    # Put Bottom legends
+    put_legends(pdf, district[1], 1, 181)
 
     # Bottom section - indicator labels
     school10yr_women = "Women with ≥10 years of education"
@@ -490,11 +877,16 @@ def create_third_page(pdf):
     hh_healthins = "HHs with health insurance"
 
     # Place indicator labels at Place
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_text_color(0, 0, 0)
     un_indicator_x = 15
-    un_indicator_y = 180
+    un_indicator_y = 175
     un_cell_width = 70
+    un_lollipop_gap = un_indicator_x + 73
+    # Put the grid lines
+    draw_gridlines(pdf, un_lollipop_gap, 177, 254)
+
+    # Put the indicators
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_font('Roboto-Regular', '', 10)
     pdf.set_xy(un_indicator_x, un_indicator_y)
     pdf.cell(un_cell_width, 10, school10yr_women, align='R')
     pdf.set_xy(un_indicator_x, un_indicator_y+10)
@@ -511,6 +903,39 @@ def create_third_page(pdf):
     pdf.cell(un_cell_width, 10, hh_bpl, align='R')
     pdf.set_xy(un_indicator_x, un_indicator_y+70)
     pdf.cell(un_cell_width, 10, hh_healthins, align='R')
+    # Put the lollipops
+    # school10yr_women = "Women with ≥10 years of education"
+    draw_green_lollipop(pdf, im_lollipop_gap, 178, district[60], state[37])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 182, district[61], state[38])
+    # wo2024_mar18 = "Women 20-24 years married before the age of 18"
+    draw_green_lollipop(pdf, im_lollipop_gap, 188, district[62], state[39])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 192, district[63], state[40])
+    # wom_pregmothers_1519 = "Women 15-19 years with child or pregnant"
+    draw_green_lollipop(pdf, im_lollipop_gap, 198, district[64], state[41])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 202, district[65], state[42])
+    # imp_latrine = "HHs with improved sanitation facility"
+    draw_green_lollipop(pdf, im_lollipop_gap, 208, district[66], state[43])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 212, district[67], state[44])
+    # imp_drinkw = "HHs with improved drinking water source"
+    draw_green_lollipop(pdf, im_lollipop_gap, 218, district[68], state[45])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 222, district[69], state[46])
+    # dispfeces = "Safe disposal of feces"
+    draw_green_lollipop(pdf, im_lollipop_gap, 228, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 232, '', '')
+    # hh_bpl = "HHs with below poverty line (BPL) card"
+    draw_green_lollipop(pdf, im_lollipop_gap, 238, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 242, '', '')
+    # hh_healthins = "HHs with health insurance"
+    draw_green_lollipop(pdf, im_lollipop_gap, 248, district[70], state[47])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 252, district[71], state[48])
+
+    # Note for NA description
+    pdf.set_font('Roboto-Bold', 'B', 7)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(125, 255.5)
+    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
+    pdf.set_font('Roboto-Regular', '', 7)
+    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -564,6 +989,194 @@ def create_fourth_page(pdf):
     pdf.cell(100, 10, top_Bar4_text, align='L')
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
+
+    # Add vertical top bar
+    pdf.set_draw_color(91, 83, 134)
+    pdf.set_fill_color(91, 83, 134)
+    pdf.rect(x=7, y=25, w=8, h=84, style='F')
+
+    # Add vertical middle bar
+    pdf.set_draw_color(91, 83, 134)
+    pdf.set_fill_color(91, 83, 134)
+    pdf.rect(x=7, y=113, w=8, h=54, style='F')
+
+    # Add vertical bottom bar
+    pdf.set_draw_color(91, 83, 134)
+    pdf.set_fill_color(91, 83, 134)
+    pdf.rect(x=7, y=171, w=8, h=83, style='F')
+
+    # Put Top legends
+    put_legends(pdf, district[1], 0, 15)
+
+    # Top section - indicator labels
+    preg_fp_satisfy = "Demand for FP satisfied"
+    iod_salt = "Iodized salt"
+    mcp_rec = "Pregnancy registered (MPC card)"
+    anc_firsttri = "ANC first trimester"
+    anc4 = "> 4 ANC visits"
+    preg_weighing = "Weighing"
+    preg_birth_prep = "Birth preparedness counselling"
+    preg_breast_prep = "Breastfeeding counselling"
+    protect_tetanus = "Tetanus injection"
+    IFA_rec = "Received IFA tab/syrup"
+    deworm_preg = "Deworming"
+    preg_food = "Food supplementation"
+
+    # Middle section - indicator labels
+    inst_birth = "Institutional birth"
+    jsy_rec1 = "Financial assistance (JSY)"
+    ba_healthpro = "Skilled birth attendant"
+    mopostnat_2day_hp = "Postnatal care for mothers"
+    chpostnat_2day_hp = "Postnatal care for babies"
+    post_food = "Food supplementation"
+    post_edu = "Health & nutrition education"
+    post_icds = "Health checkup (ICDS)"
+
+    # Bottom section - indicator labels
+    full_immun1 = "Full immunization"
+    chvitA_6m1 = "Vitamin A"
+    child_ifa = "Pediatric IFA"
+    child_deworm = "Deworming"
+    child_food = "Food supplementation (6-35 months)"
+    child_weighing = "Weighing"
+    child_growth = "Counselling on child growth"
+    ch_ors = "ORS during diarrhea"
+    ch_zinc = "Zinc during diarrhea"
+    ari_treat = "Careseeking for ARI"
+    child_preschool = "Preschool at AWC"
+    child_chekcup = "Health checkup from AWC"
+
+    # Place indicator labels at Place
+    co_indicator_x = 30
+    co_indicator_y = 22
+    co_cell_width = 70
+    co_lollipop_gap = co_indicator_x + 85
+    vert_gap = 7.25
+    # Put the grid lines
+    # Top grid line x-axis
+    x = co_lollipop_gap
+    y = co_indicator_y
+    pdf.set_draw_color(109, 111, 113)
+    pdf.set_line_width(0.5)
+    pdf.line(x, y, x+50, y)
+    #
+    pdf.set_draw_color(109, 111, 113)
+    pdf.line(x, y, x, y-1)
+    pdf.line(x+10, y, x+10, y-1)
+    pdf.line(x+20, y, x+20, y-1)
+    pdf.line(x+30, y, x+30, y-1)
+    pdf.line(x+40, y, x+40, y-1)
+    pdf.line(x+50, y, x+50, y-1)
+    #
+    pdf.set_font('Roboto-Regular', '', 8)
+    pdf.set_text_color(109, 111, 113)
+    pdf.set_xy(x-3, y-5)
+    pdf.cell(4, 3, "0%", align="L")
+    pdf.set_xy(x+10-3, y-5)
+    pdf.cell(4, 3, "20%", align="L")
+    pdf.set_xy(x+20-3, y-5)
+    pdf.cell(4, 3, "40%", align="L")
+    pdf.set_xy(x+30-3, y-5)
+    pdf.cell(4, 3, "60%", align="L")
+    pdf.set_xy(x+40-3, y-5)
+    pdf.cell(4, 3, "80%", align="L")
+    pdf.set_xy(x+50-3, y-5)
+    pdf.cell(4, 3, "100%", align="L")
+    # Function call for grid line
+    draw_gridlines(pdf, co_lollipop_gap, 23, 256)
+
+    # Put the top indicators
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_font('Roboto-Regular', '', 10)
+    pdf.set_xy(co_indicator_x, co_indicator_y)
+    pdf.cell(co_cell_width, 10, preg_fp_satisfy, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+1*vert_gap)
+    pdf.cell(co_cell_width, 10, iod_salt, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+2*vert_gap)
+    pdf.cell(co_cell_width, 10, mcp_rec, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+3*vert_gap)
+    pdf.cell(co_cell_width, 10, anc_firsttri, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+4*vert_gap)
+    pdf.cell(co_cell_width, 10, anc4, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+5*vert_gap)
+    pdf.cell(co_cell_width, 10, preg_weighing, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+6*vert_gap)
+    pdf.cell(co_cell_width, 10, preg_birth_prep, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+7*vert_gap)
+    pdf.cell(co_cell_width, 10, preg_breast_prep, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+8*vert_gap)
+    pdf.cell(co_cell_width, 10, protect_tetanus, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+9*vert_gap)
+    pdf.cell(co_cell_width, 10, IFA_rec, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+10*vert_gap)
+    pdf.cell(co_cell_width, 10, deworm_preg, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+11*vert_gap)
+    pdf.cell(co_cell_width, 10, preg_food, align='R')
+
+    # Put the middle indicators
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_font('Roboto-Regular', '', 10)
+    pdf.set_xy(co_indicator_x, co_indicator_y+12*vert_gap)
+    pdf.cell(co_cell_width, 10, inst_birth, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+13*vert_gap)
+    pdf.cell(co_cell_width, 10, jsy_rec1, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+14*vert_gap)
+    pdf.cell(co_cell_width, 10, ba_healthpro, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+15*vert_gap)
+    pdf.cell(co_cell_width, 10, mopostnat_2day_hp, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+16*vert_gap)
+    pdf.cell(co_cell_width, 10, chpostnat_2day_hp, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+17*vert_gap)
+    pdf.cell(co_cell_width, 10, post_food, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+18*vert_gap)
+    pdf.cell(co_cell_width, 10, post_edu, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+19*vert_gap)
+    pdf.cell(co_cell_width, 10, post_icds, align='R')
+
+    # Put the top indicators
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_font('Roboto-Regular', '', 10)
+    pdf.set_xy(co_indicator_x, co_indicator_y+20*vert_gap)
+    pdf.cell(co_cell_width, 10, full_immun1, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+21*vert_gap)
+    pdf.cell(co_cell_width, 10, chvitA_6m1, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+22*vert_gap)
+    pdf.cell(co_cell_width, 10, child_ifa, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+23*vert_gap)
+    pdf.cell(co_cell_width, 10, child_deworm, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+24*vert_gap)
+    pdf.cell(co_cell_width, 10, child_food, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+25*vert_gap)
+    pdf.cell(co_cell_width, 10, child_weighing, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+26*vert_gap)
+    pdf.cell(co_cell_width, 10, child_growth, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+27*vert_gap)
+    pdf.cell(co_cell_width, 10, ch_ors, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+28*vert_gap)
+    pdf.cell(co_cell_width, 10, ch_zinc, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+29*vert_gap)
+    pdf.cell(co_cell_width, 10, ari_treat, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+30*vert_gap)
+    pdf.cell(co_cell_width, 10, child_preschool, align='R')
+    pdf.set_xy(co_indicator_x, co_indicator_y+31*vert_gap)
+    pdf.cell(co_cell_width, 10, child_chekcup, align='R')
+
+    # Put the double lollipops
+    lollipop_start = co_indicator_y + 3
+    lolli_gap = 8
+    # Top section
+    draw_dual_lollipop(pdf, co_lollipop_gap, lollipop_start, '', '')
+    draw_dual_lollipop(pdf, co_lollipop_gap, lollipop_start+1*lolli_gap, '74', '35.98')
+    draw_dual_lollipop(pdf, co_lollipop_gap, lollipop_start+2*lolli_gap, '', '5.98')
+    draw_dual_lollipop(pdf, co_lollipop_gap, lollipop_start+3*lolli_gap, '0.18', '')
+
+    # Note for NA description
+    pdf.set_font('Roboto-Bold', 'B', 7)
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_xy(125, 259)
+    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
+    pdf.set_font('Roboto-Regular', '', 7)
+    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -642,9 +1255,15 @@ def create_report(filename):
 
 #Read CSV file
 with open("./data/csv/comparable_district_data_temp.csv", 'r') as infile:
-    reader = csv.reader(infile, delimiter=",")
-    header = next(reader)
-    for district in reader:
-        #Generated DNP file name
-        filename="{}-{}.pdf".format(district[3], district[1])
-        create_report(filename)
+    district_reader = csv.reader(infile, delimiter=",")
+    district_header = next(district_reader)
+    for district in district_reader:
+        # Read State level data
+        with open("./data/csv/comparable_state_data_temp.csv", 'r') as infile:
+            state_reader = csv.reader(infile, delimiter=",")
+            state_header = next(state_reader)
+            for state in state_reader:
+                if district[2] == state[2]:
+                    #Generated DNP file name
+                    filename="{}-{}.pdf".format(district[3], district[1])
+                    create_report(filename)
