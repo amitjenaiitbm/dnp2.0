@@ -1341,12 +1341,14 @@ def create_report(filename):
     print(district[3] + " of " + district[1] + " generated.")
 
 #Read CSV file
-with open("./data/csv/comparable_district_data_temp.csv", 'r') as infile:
+# comparable_district_data_temp.csv --> Temporary file with 6 rows for testing
+# comparable_district_data.csv --> Actual file 575 rows
+with open("./data/csv/comparable_district_data.csv", 'r') as infile:
     district_reader = csv.reader(infile, delimiter=",")
     district_header = next(district_reader)
     for district in district_reader:
         # Read State level data
-        with open("./data/csv/comparable_state_data_temp.csv", 'r') as infile:
+        with open("./data/csv/comparable_state_data.csv", 'r') as infile:
             state_reader = csv.reader(infile, delimiter=",")
             state_header = next(state_reader)
             for state in state_reader:
