@@ -200,9 +200,9 @@ def create_first_page(pdf):
     pdf.image("./resources/topBanner-1.png", x=0, y=0, w=WIDTH)
 
     # Add "District Nutrition Profile" text
-    pdf.set_font('Roboto-Bold', 'B', 20)
+    pdf.set_font('Arjun-Wide', '', 20)
     pdf.set_text_color(255, 255, 255)
-    banner_text = "district nutrition profile"
+    banner_text = "ftyk iks\"k.k izksQkby"
     pdf.set_xy(100, 6)
     pdf.cell(80, 20, banner_text.upper())
 
@@ -1313,25 +1313,28 @@ def create_report(filename):
     pdf.add_font('Roboto-Bold', 'B',
                 './custom_fonts/Roboto-Bold.ttf',
                 uni=True)
+    pdf.add_font('Arjun-Wide', '',
+                './custom_fonts/Arjun-Wide-Regular.ttf',
+                uni=True)
 
     # First Page
     pdf.add_page()
     create_first_page(pdf)
 
     # Second Page
-    pdf.add_page()
-    create_second_page(pdf)
+    # pdf.add_page()
+    # create_second_page(pdf)
 
     # Third Page
-    pdf.add_page()
-    create_third_page(pdf)
+    # pdf.add_page()
+    # create_third_page(pdf)
 
     # Fourth Page
-    pdf.add_page()
-    create_fourth_page(pdf)
+    # pdf.add_page()
+    # create_fourth_page(pdf)
 
     #create a sub-folder
-    path = 'generated_dnp/comparable_dnp_english'
+    path = 'generated_dnp/comparable_dnp_hindi'
     dirName = path + '/{}'.format(district[1])
     if not os.path.exists(dirName):
         os.mkdir(dirName)

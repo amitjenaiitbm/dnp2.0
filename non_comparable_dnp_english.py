@@ -1319,19 +1319,19 @@ def create_report(filename):
     create_first_page(pdf)
 
     # Second Page
-    pdf.add_page()
-    create_second_page(pdf)
+    # pdf.add_page()
+    # create_second_page(pdf)
 
     # Third Page
-    pdf.add_page()
-    create_third_page(pdf)
+    # pdf.add_page()
+    # create_third_page(pdf)
 
     # Fourth Page
-    pdf.add_page()
-    create_fourth_page(pdf)
+    # pdf.add_page()
+    # create_fourth_page(pdf)
 
     #create a sub-folder
-    path = 'generated_dnp/comparable_dnp_english'
+    path = 'generated_dnp/non_comparable_dnp_english'
     dirName = path + '/{}'.format(district[1])
     if not os.path.exists(dirName):
         os.mkdir(dirName)
