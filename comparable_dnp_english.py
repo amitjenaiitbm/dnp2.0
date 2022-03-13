@@ -1338,7 +1338,7 @@ def create_report(filename):
     pdf.output(dirName+'/'+filename, "F")
 
     # Success message
-    print(district[3] + " of " + district[1] + " generated.")
+    print(district[0] + "." + district[3] + " of " + district[1] + " generated.")
 
 #Read CSV file
 # comparable_district_data_temp.csv --> Temporary file with 6 rows for testing
