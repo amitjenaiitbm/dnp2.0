@@ -50,95 +50,6 @@ def draw_gridlines(pdf, x1, y1, y2):
         pdf.set_xy(x1+50-3, y2+2)
         pdf.cell(4, 3, "100%", align="L")
 
-def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
-    if district_2016 != '':
-        x2 = x1+(0.5*float(district_2016))
-        # Place green circle image
-        pdf.image("./resources/green_circle.png", x=x2-1, y=y1-1.5, w=3)
-        # Write the district value of 2016
-        pdf.set_font('Roboto-Regular', '', 8)
-        pdf.set_text_color(136, 180, 64)
-        if district_2019 == '' or (float(district_2016) <= float(district_2019)):
-            percent_text_pos = x2 - 5
-            pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="R")
-        elif float(district_2016) > float(district_2019):
-            percent_text_pos = x2 + 2
-            pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
-
-    if district_2019 != '':
-        x2 = x1+(0.5*float(district_2019))
-        # Place green circle image
-        pdf.image("./resources/orange_circle.png", x=x2-1, y=y1-1.5, w=3)
-        # Write the district value of 2016
-        pdf.set_font('Roboto-Regular', '', 8)
-        pdf.set_text_color(231, 121, 37)
-        if district_2016 == '' or (float(district_2019) >= float(district_2016)):
-            percent_text_pos = x2 + 2
-            pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
-        elif float(district_2019) < float(district_2016):
-            percent_text_pos = x2 - 5
-            pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="R")
-
-    # Draw the connecting arrow
-    if (district_2016 != '') and (district_2019 != ''):
-        # Draw connecting line
-        pdf.set_draw_color(0, 0, 0)
-        pdf.set_line_width(0.25)
-        p = x1+(0.5*float(district_2016))+0.5
-        q = x1+(0.5*float(district_2019))+0.5
-        pdf.line(p, y1, q, y1)
-        # Place arrow
-        k = 0.75
-        if float(district_2016) < float(district_2019):
-            pdf.line(q, y1, q-k, y1-k)
-            pdf.line(q, y1, q-k, y1+k)
-        elif float(district_2016) > float(district_2019):
-            pdf.line(p, y1, p-k, y1-k)
-            pdf.line(p, y1, p-k, y1+k)
-
-    # Print NA (2016) and NA (2019) if both are NOT available
-    if (district_2016 == '') and (district_2019 == ''):
-        # Print green NA (2016)
-        pdf.set_font('Roboto-Regular', '', 8)
-        pdf.set_text_color(136, 180, 64)
-        pdf.set_xy(x1, y1)
-        pdf.cell(4, 1, "NA", align="L")
-        # Print orange NA (2019)
-        pdf.set_text_color(231, 121, 37)
-        pdf.set_xy(x1+10, y1)
-        pdf.cell(4, 1, "NA", align="L")
-
-def draw_green_lollipop(pdf, x1, y1, district_2016, state_2016):
-    if district_2016 != '':
-        x2 = x1+(0.5*float(district_2016))
-        # Draw green line
-        pdf.set_draw_color(136, 180, 64)
-        pdf.set_line_width(0.75)
-        pdf.line(x1, y1, x2, y1)
-        # Place green circle image
-        pdf.image("./resources/green_circle.png", x=x2-1, y=y1-1.5, w=3)
-        # Draw state mark in grey
-        x3 = x1+(0.5*float(state_2016))
-        pdf.set_draw_color(109, 111, 113)
-        pdf.set_line_width(0.75)
-        pdf.line(x3, y1-1.5, x3, y1+1.5)
-        # Write the district value of 2016
-        pdf.set_font('Roboto-Regular', '', 8)
-        pdf.set_text_color(136, 180, 64)
-        percent_text_pos = x2 + 3
-        pdf.set_xy(percent_text_pos, y1-1.5)
-        pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
-    else:
-        # Print NA
-        pdf.set_font('Roboto-Regular', '', 8)
-        pdf.set_text_color(136, 180, 64)
-        pdf.set_xy(x1, y1)
-        pdf.cell(4, 3, "NA", align="L")
-
 def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
     if district_2019 != '':
         x2 = x1+(0.5*float(district_2019))
@@ -163,7 +74,7 @@ def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
         pdf.set_text_color(231, 121, 37)
-        pdf.set_xy(x1, y1)
+        pdf.set_xy(x1, y1-1)
         pdf.cell(4, 3, "NA", align="L")
 
 def put_legends(pdf, state_name, put_state_name, y):
@@ -181,18 +92,11 @@ def put_legends(pdf, state_name, put_state_name, y):
         pdf.set_line_width(0.75)
         pdf.line(x1, y-1.5, x1, y+1.5)
 
-    #Put 2016 and 2019 legends
-    # Write 2016
-    pdf.image("./resources/green_circle.png", x=WIDTH-18, y=y+5, w=8)
+    # Write 2019
+    pdf.image("./resources/orange_circle.png", x=WIDTH-18, y=y+5, w=8)
     pdf.set_font('Roboto-Bold', 'B', 8)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(WIDTH-16, y+7)
-    pdf.cell(4, 4, "2016", align="C")
-    # Write 2019
-    pdf.image("./resources/orange_circle.png", x=WIDTH-18, y=y+15, w=8)
-    pdf.set_font('Roboto-Bold', 'B', 8)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(WIDTH-16, y+17)
     pdf.cell(4, 4, "2019", align="C")
 
 def create_first_page(pdf):
@@ -233,7 +137,7 @@ def create_first_page(pdf):
     pdf.multi_cell(115, 4.5, DNPdesc_text, align='J')
 
     # Add district map
-    map_path = './data/maps/comparable_maps/{}.jpg'.format(district[4])
+    map_path = './data/maps/non_comparable_maps/{}.jpeg'.format(district[4])
     pdf.image(map_path, x=125, y=53, w=75, h=40)
     # map caption
     figure1_text = "Figure 1:"
@@ -479,26 +383,26 @@ def create_second_page(pdf):
     pdf.cell(40, 10, "NA", align='L')
     pdf.set_xy(WIDTH-84, 69.5)
     pdf.cell(40, 10, "Stunted", align='L')
-    pdf.cell(40, 10, round_str(district[13]), align='L')
+    pdf.cell(40, 10, round_str(district[12]), align='L')
     pdf.set_xy(WIDTH-84, 75)
     pdf.cell(40, 10, "Wasted", align='L')
-    pdf.cell(40, 10, round_str(district[16]), align='L')
+    pdf.cell(40, 10, round_str(district[14]), align='L')
     pdf.set_xy(WIDTH-84, 81)
     pdf.cell(40, 10, "Severely wasted", align='L')
-    pdf.cell(40, 10, round_str(district[19]), align='L')
+    pdf.cell(40, 10, round_str(district[16]), align='L')
     pdf.set_xy(WIDTH-84, 86.5)
     pdf.cell(40, 10, "Underweight", align='L')
-    pdf.cell(40, 10, round_str(district[22]), align='L')
+    pdf.cell(40, 10, round_str(district[18]), align='L')
     pdf.set_xy(WIDTH-84, 92.5)
     pdf.cell(40, 10, "Overweight/obesity", align='L')
-    pdf.cell(40, 10, round_str(district[25]), align='L')
+    pdf.cell(40, 10, round_str(district[20]), align='L')
     pdf.set_xy(WIDTH-84, 98.5)
     pdf.cell(40, 10, "Anemia", align='L')
-    pdf.cell(40, 10, round_str(district[28]), align='L')
+    pdf.cell(40, 10, round_str(district[22]), align='L')
     pdf.set_xy(WIDTH-84, 104)
     pdf.set_font('Roboto-Bold', 'B', 8)
     pdf.cell(40, 10, "Total children", align='L')
-    pdf.cell(40, 10, round_str(district[29]), align='L')
+    pdf.cell(40, 10, round_str(district[23]), align='L')
 
     # Top section - indicator labels
     ch_lowbirth = "Low-birth weight"
@@ -538,26 +442,19 @@ def create_second_page(pdf):
 
     # Put the lollipops
     # ch_lowbirth = "Low-birth weight"
-    draw_green_lollipop(pdf, ch_lollipop_gap, 20, '', '')
-    draw_orange_lollipop(pdf, ch_lollipop_gap, 24, '', '')
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 22, '', '')
     # ch_stunt = "Stunted"
-    draw_green_lollipop(pdf, ch_lollipop_gap, 36, district[11], state[3])
-    draw_orange_lollipop(pdf, ch_lollipop_gap, 40, district[12], state[4])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 38, district[11], state[3])
     # ch_waste = "Wasted"
-    draw_green_lollipop(pdf, ch_lollipop_gap, 50, district[14], state[5])
-    draw_orange_lollipop(pdf, ch_lollipop_gap, 54, district[15], state[6])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 52, district[13], state[4])
     # ch_wastesev = "Severely wasted"
-    draw_green_lollipop(pdf, ch_lollipop_gap, 66, district[17], state[7])
-    draw_orange_lollipop(pdf, ch_lollipop_gap, 70, district[18], state[8])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 68, district[15], state[5])
     # ch_uweight = "Underweight"
-    draw_green_lollipop(pdf, ch_lollipop_gap, 81, district[20], state[9])
-    draw_orange_lollipop(pdf, ch_lollipop_gap, 85, district[21], state[10])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 83, district[17], state[6])
     # ch_over = "Overweight/obesity"
-    draw_green_lollipop(pdf, ch_lollipop_gap, 96, district[23], state[11])
-    draw_orange_lollipop(pdf, ch_lollipop_gap, 100, district[24], state[12])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 98, district[19], state[7])
     # ch_anemic = "Anemia"
-    draw_green_lollipop(pdf, ch_lollipop_gap, 111, district[26], state[13])
-    draw_orange_lollipop(pdf, ch_lollipop_gap, 115, district[27], state[14])
+    draw_orange_lollipop(pdf, ch_lollipop_gap, 113, district[21], state[8])
 
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
@@ -622,29 +519,29 @@ def create_second_page(pdf):
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(WIDTH-84, 201.5)
     pdf.cell(40, 10, "Underweight", align='L')
-    pdf.cell(40, 10, round_str(district[32]), align='L')
+    pdf.cell(40, 10, round_str(district[25]), align='L')
     pdf.set_xy(WIDTH-84, 207.5)
     pdf.cell(40, 10, "Overweight/obesity", align='L')
-    pdf.cell(40, 10, round_str(district[35]), align='L')
+    pdf.cell(40, 10, round_str(district[27]), align='L')
     pdf.set_xy(WIDTH-84, 213)
     pdf.cell(40, 10, "Hypertension", align='L')
-    pdf.cell(40, 10, round_str(district[37]), align='L')
+    pdf.cell(40, 10, round_str(district[29]), align='L')
     pdf.set_xy(WIDTH-84, 218.5)
     pdf.cell(40, 10, "Diabetes", align='L')
-    pdf.cell(40, 10, round_str(district[39]), align='L')
+    pdf.cell(40, 10, round_str(district[31]), align='L')
     pdf.set_xy(WIDTH-84, 224.5)
     pdf.cell(40, 10, "Anemia (non-preg)", align='L')
-    pdf.cell(40, 10, round_str(district[42]), align='L')
+    pdf.cell(40, 10, round_str(district[33]), align='L')
     pdf.set_xy(WIDTH-84, 230.5)
     pdf.cell(40, 10, "Anemia (preg)", align='L')
-    pdf.cell(40, 10, round_str(district[45]), align='L')
+    pdf.cell(40, 10, round_str(district[35]), align='L')
     pdf.set_xy(WIDTH-84, 236)
     pdf.set_font('Roboto-Bold', 'B', 8)
     pdf.cell(40, 10, "Total women (preg)", align='L')
-    pdf.cell(40, 10, round_str(district[46]), align='L')
+    pdf.cell(40, 10, round_str(district[36]), align='L')
     pdf.set_xy(WIDTH-84, 242)
     pdf.cell(40, 10, "Total women", align='L')
-    pdf.cell(40, 10, round_str(district[47]), align='L')
+    pdf.cell(40, 10, round_str(district[37]), align='L')
 
     # Bottom section - indicator labels
     bmi_f_lowbmiout = "Underweight (BMI <18.5 kg/m²)"
@@ -681,23 +578,17 @@ def create_second_page(pdf):
 
     # Put the lollipops
     # bmi_f_lowbmiout = "Underweight (BMI <18.5 kg/m²)"
-    draw_green_lollipop(pdf, wo_lollipop_gap, 168, district[30], state[15])
-    draw_orange_lollipop(pdf, wo_lollipop_gap, 172, district[31], state[16])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 170, district[24], state[9])
     # bmi_f_highbmi = "Overweight/obesity"
-    draw_green_lollipop(pdf, wo_lollipop_gap, 183, district[33], state[17])
-    draw_orange_lollipop(pdf, wo_lollipop_gap, 187, district[34], state[18])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 185, district[26], state[10])
     # hypertension_women = "Hypertension"
-    draw_green_lollipop(pdf, wo_lollipop_gap, 198, '', '')
-    draw_orange_lollipop(pdf, wo_lollipop_gap, 202, district[36], state[19])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 200, district[28], state[11])
     # diabetes_women = "Diabetes"
-    draw_green_lollipop(pdf, wo_lollipop_gap, 213, '', '')
-    draw_orange_lollipop(pdf, wo_lollipop_gap, 217, district[38], state[20])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 215, district[30], state[12])
     # hb_f_anemia = "Anemia (non-pregnant)"
-    draw_green_lollipop(pdf, wo_lollipop_gap, 228, district[40], state[21])
-    draw_orange_lollipop(pdf, wo_lollipop_gap, 232, district[41], state[22])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 230, district[32], state[13])
     # preg_anemia = "Anemia (pregnant)"
-    draw_green_lollipop(pdf, wo_lollipop_gap, 243, district[43], state[23])
-    draw_orange_lollipop(pdf, wo_lollipop_gap, 247, district[44], state[24])
+    draw_orange_lollipop(pdf, wo_lollipop_gap, 245, district[34], state[14])
 
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
@@ -807,41 +698,29 @@ def create_third_page(pdf):
     pdf.cell(im_cell_width, 10, botfeed_623, align='R')
     # Put the lollipops
     # take100_IFA_preg = "Consumed IFA 100+ days (pregnant women)"
-    draw_green_lollipop(pdf, im_lollipop_gap, 18, district[48], state[25])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 22, district[49], state[26])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 20, district[38], state[15])
     # ifa_180 = "Consumed IFA 180+ days (pregnant women)"
-    draw_green_lollipop(pdf, im_lollipop_gap, 28, district[50], state[27])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 32, district[51], state[28])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 30, district[39], state[16])
     # iycf_earlybf35 = "Early initiation of breastfeeding (children < 3 yr)"
-    draw_green_lollipop(pdf, im_lollipop_gap, 38, district[52], state[29])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 42, district[53], state[30])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 40, district[40], state[17])
     # iycf_exclbf0 = "Exclusive breastfeeding"
-    draw_green_lollipop(pdf, im_lollipop_gap, 48, district[54], state[31])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 52, district[55], state[32])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 50, district[41], state[18])
     # brestfeed12 = "Continued breastfeeding at 2 years"
-    draw_green_lollipop(pdf, im_lollipop_gap, 58, '', '')
-    draw_orange_lollipop(pdf, im_lollipop_gap, 62, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 60, '', '')
     # n_iycf_introfood = "Timely introduction of complementary foods"
-    draw_green_lollipop(pdf, im_lollipop_gap, 68, district[56], state[33])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 72, district[57], state[34])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 70, district[42], state[19])
     # n_iycf_minaccdiet0 = "Adequate diet (children)"
-    draw_green_lollipop(pdf, im_lollipop_gap, 78, district[58], state[35])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 82, district[59], state[36])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 80, district[43], state[20])
     # ch_dietary = "Dietary diversity (children)"
-    draw_green_lollipop(pdf, im_lollipop_gap, 88, '', '')
-    draw_orange_lollipop(pdf, im_lollipop_gap, 92, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 90, '', '')
     # ch_meal_freq = "Minimum meal frequency (children)"
-    draw_green_lollipop(pdf, im_lollipop_gap, 98, '', '')
-    draw_orange_lollipop(pdf, im_lollipop_gap, 102, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 100, '', '')
     # food_623 = "Eggs and/or flesh foods consumption, 6-23 m"
-    draw_green_lollipop(pdf, im_lollipop_gap, 108, '', '')
-    draw_orange_lollipop(pdf, im_lollipop_gap, 112, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 110, '', '')
     # bev_623 = "Sweet beverage consumption, 6-23 m"
-    draw_green_lollipop(pdf, im_lollipop_gap, 118, '', '')
-    draw_orange_lollipop(pdf, im_lollipop_gap, 122, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 120, '', '')
     # botfeed_623 = "Bottle feeding of infants, 6-23 m"
-    draw_green_lollipop(pdf, im_lollipop_gap, 128, '', '')
-    draw_orange_lollipop(pdf, im_lollipop_gap, 132, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 130, '', '')
 
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
@@ -928,29 +807,21 @@ def create_third_page(pdf):
     pdf.cell(un_cell_width, 10, hh_healthins, align='R')
     # Put the lollipops
     # school10yr_women = "Women with ≥10 years of education"
-    draw_green_lollipop(pdf, im_lollipop_gap, 178, district[60], state[37])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 182, district[61], state[38])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 180, district[44], state[21])
     # wo2024_mar18 = "Women 20-24 years married before the age of 18"
-    draw_green_lollipop(pdf, im_lollipop_gap, 188, district[62], state[39])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 192, district[63], state[40])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 190, district[45], state[22])
     # wom_pregmothers_1519 = "Women 15-19 years with child or pregnant"
-    draw_green_lollipop(pdf, im_lollipop_gap, 198, district[64], state[41])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 202, district[65], state[42])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 200, district[46], state[23])
     # imp_latrine = "HHs with improved sanitation facility"
-    draw_green_lollipop(pdf, im_lollipop_gap, 208, district[66], state[43])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 212, district[67], state[44])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 210, district[47], state[24])
     # imp_drinkw = "HHs with improved drinking water source"
-    draw_green_lollipop(pdf, im_lollipop_gap, 218, district[68], state[45])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 222, district[69], state[46])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 220, district[48], state[25])
     # dispfeces = "Safe disposal of feces"
-    draw_green_lollipop(pdf, im_lollipop_gap, 228, '', '')
-    draw_orange_lollipop(pdf, im_lollipop_gap, 232, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 230, '', '')
     # hh_bpl = "HHs with below poverty line (BPL) card"
-    draw_green_lollipop(pdf, im_lollipop_gap, 238, '', '')
-    draw_orange_lollipop(pdf, im_lollipop_gap, 242, '', '')
+    draw_orange_lollipop(pdf, im_lollipop_gap, 240, '', '')
     # hh_healthins = "HHs with health insurance"
-    draw_green_lollipop(pdf, im_lollipop_gap, 248, district[70], state[47])
-    draw_orange_lollipop(pdf, im_lollipop_gap, 252, district[71], state[48])
+    draw_orange_lollipop(pdf, im_lollipop_gap, 250, district[49], state[26])
 
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
@@ -1189,73 +1060,73 @@ def create_fourth_page(pdf):
 
     # Top section
     #preg_fp_satisfy = "Demand for FP satisfied"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 27, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 27, '', '')
     # iod_salt = "Iodized salt"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 34, district[72], district[73])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 34, district[50], state[27])
     # mcp_rec = "Pregnancy registered (MPC card)"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 42, district[74], district[75])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 42, district[51], state[28])
     # anc_firsttri = "ANC first trimester"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 49, district[76], district[77])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 49, district[52], state[29])
     # anc4 = "> 4 ANC visits"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 56, district[78], district[79])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 56, district[53], state[30])
     # preg_weighing = "Weighing"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 63, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 63, '', '')
     # preg_birth_prep = "Birth preparedness counselling"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 71, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 71, '', '')
     # preg_breast_prep = "Breastfeeding counselling"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 78, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 78, '', '')
     # protect_tetanus = "Tetanus injection"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 85, district[80], district[81])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 85, district[54], state[31])
     # # IFA_rec = "Received IFA tab/syrup"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 92, '', district[82])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 92, district[55], state[32])
     # # deworm_preg = "Deworming"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 99.5, '', district[83])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 99.5, district[56], state[33])
     # # preg_food = "Food supplementation"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 107, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 107, '', '')
 
     # Middle section
     # inst_birth = "Institutional birth"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 114, district[84], district[85])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 114, district[57], state[34])
     # jsy_rec1 = "Financial assistance (JSY)"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 121, '', district[86])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 121, district[58], state[35])
     # ba_healthpro = "Skilled birth attendant"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 128.5, district[87], district[88])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 128.5, district[59], state[36])
     # mopostnat_2day_hp = "Postnatal care for mothers"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 136, district[89], district[90])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 136, district[60], state[37])
     # chpostnat_2day_hp = "Postnatal care for babies"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 143, '', district[91])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 143, district[61], state[38])
     # post_food = "Food supplementation"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 150.5, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 150.5, '', '')
     # post_edu = "Health & nutrition education"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 157, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 157, '', '')
     # post_icds = "Health checkup (ICDS)"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 165, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 165, '', '')
 
     # Bottom section
     # full_immun1 = "Full immunization"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 172, district[92], district[93])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 172, district[62], state[39])
     # chvitA_6m1 = "Vitamin A"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 179, district[94], district[95])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 179, district[63], state[40])
     # child_ifa = "Pediatric IFA"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 187, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 187, '', '')
     # child_deworm = "Deworming"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 194, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 194, '', '')
     # child_food = "Food supplementation (6-35 months)"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 201, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 201, '', '')
     # child_weighing = "Weighing"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 208, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 208, '', '')
     # child_growth = "Counselling on child growth"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 215.5, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 215.5, '', '')
     # ch_ors = "ORS during diarrhea"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 223, district[96], district[97])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 223, district[64], state[41])
     # ch_zinc = "Zinc during diarrhea"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 230.5, district[98], district[99])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 230.5, district[65], state[42])
     # ari_treat = "Careseeking for ARI"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 237, district[100], district[101])
+    draw_orange_lollipop(pdf, co_lollipop_gap, 237, district[66], state[43])
     # child_preschool = "Preschool at AWC"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 245, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 245, '', '')
     # child_chekcup = "Health checkup from AWC"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 252, '', '')
+    draw_orange_lollipop(pdf, co_lollipop_gap, 252, '', '')
 
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
@@ -1319,16 +1190,16 @@ def create_report(filename):
     create_first_page(pdf)
 
     # Second Page
-    # pdf.add_page()
-    # create_second_page(pdf)
+    pdf.add_page()
+    create_second_page(pdf)
 
     # Third Page
-    # pdf.add_page()
-    # create_third_page(pdf)
+    pdf.add_page()
+    create_third_page(pdf)
 
     # Fourth Page
-    # pdf.add_page()
-    # create_fourth_page(pdf)
+    pdf.add_page()
+    create_fourth_page(pdf)
 
     #create a sub-folder
     path = 'generated_dnp/non_comparable_dnp_english'
@@ -1338,15 +1209,17 @@ def create_report(filename):
     pdf.output(dirName+'/'+filename, "F")
 
     # Success message
-    print(district[3] + " of " + district[1] + " generated.")
+    print(district[0] + "." + district[3] + " of " + district[1] + " generated.")
 
 #Read CSV file
-with open("./data/csv/comparable_district_data_temp.csv", 'r') as infile:
+# non_comparable_district_data_temp.csv --> Temporary file with 6 rows for testing
+# non_comparable_district_data.csv --> Actual file 132rows
+with open("./data/csv/non_comparable_district_data.csv", 'r') as infile:
     district_reader = csv.reader(infile, delimiter=",")
     district_header = next(district_reader)
     for district in district_reader:
         # Read State level data
-        with open("./data/csv/comparable_state_data_temp.csv", 'r') as infile:
+        with open("./data/csv/non_comparable_state_data.csv", 'r') as infile:
             state_reader = csv.reader(infile, delimiter=",")
             state_header = next(state_reader)
             for state in state_reader:
