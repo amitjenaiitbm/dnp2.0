@@ -290,9 +290,9 @@ def create_first_page(pdf):
     # State nutrition profiles
     pdf.image("./resources/state_nut_prof.png", x=7, y=194, w=WIDTH-14)
     # Sex ratio number
-    pdf.set_font('Roboto-Bold', 'B', 28)
+    pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(20, 193)
+    pdf.set_xy(19, 193)
     if district[5] != '':
         pdf.cell(40, 20, str("{:,}".format(round(float(district[5]))))+"/1,000", align='L')
     else:
@@ -302,12 +302,12 @@ def create_first_page(pdf):
     sexRatio_text2 = "males) of the total population"
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(20, 206)
+    pdf.set_xy(19, 206)
     pdf.cell(55, 10, sexRatio_text1, align='L')
-    pdf.set_xy(20, 210)
+    pdf.set_xy(19, 210)
     pdf.cell(55, 10, sexRatio_text2, align='L')
     # Reproductive age number
-    pdf.set_font('Roboto-Bold', 'B', 28)
+    pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(85, 193)
     if district[6] != '':
@@ -324,7 +324,7 @@ def create_first_page(pdf):
     pdf.set_xy(85, 210)
     pdf.cell(55, 10, reproductive_text2, align='L')
     # Pregnant women number
-    pdf.set_font('Roboto-Bold', 'B', 28)
+    pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(152, 193)
     if district[7] != '':
@@ -341,9 +341,9 @@ def create_first_page(pdf):
     pdf.set_xy(152, 210)
     pdf.cell(55, 10, pregnantWomen_text2, align='L')
     # Live birth number
-    pdf.set_font('Roboto-Bold', 'B', 28)
+    pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(20, 220)
+    pdf.set_xy(19, 220)
     if district[8] != '':
         pdf.cell(40, 20, str("{:,}".format(round(float(district[8])))), align='L')
     else:
@@ -352,10 +352,10 @@ def create_first_page(pdf):
     liveBirth_text1 = "Number of live births"
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(20, 233)
+    pdf.set_xy(19, 233)
     pdf.cell(55, 10, liveBirth_text1, align='L')
     # Total children number
-    pdf.set_font('Roboto-Bold', 'B', 28)
+    pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(85, 220)
     if district[9] != '':
@@ -372,7 +372,7 @@ def create_first_page(pdf):
     pdf.set_xy(85, 237)
     pdf.cell(55, 10, totalChildren_text2, align='L')
     # Births registered number
-    pdf.set_font('Roboto-Bold', 'B', 28)
+    pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(152, 220)
     if district[10] != '':
