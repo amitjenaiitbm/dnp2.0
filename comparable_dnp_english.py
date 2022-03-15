@@ -139,7 +139,7 @@ def draw_green_lollipop(pdf, x1, y1, district_2016, state_2016):
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
         pdf.set_text_color(136, 180, 64)
-        pdf.set_xy(x1, y1)
+        pdf.set_xy(x1, y1-1)
         pdf.cell(4, 3, "NA", align="L")
 
 def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
@@ -169,7 +169,7 @@ def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
         pdf.set_text_color(231, 121, 37)
-        pdf.set_xy(x1, y1)
+        pdf.set_xy(x1, y1-1)
         pdf.cell(4, 3, "NA", align="L")
 
 def put_legends(pdf, state_name, put_state_name, y):
