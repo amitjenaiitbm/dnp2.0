@@ -6,7 +6,7 @@ from fpdf import FPDF
 
 WIDTH = 210
 HEIGHT = 297
-NA_desc_text = "Note: NA refers to data is unavailable for a given round of NFHS data."
+NA_desc_text = "होसके किके दर्शाता विकासक्षमता अतित विकास तरहथा।"
 
 def round_str(value):
     if value != '':
@@ -200,11 +200,11 @@ def create_first_page(pdf):
     pdf.image("./resources/topBanner-1.png", x=0, y=0, w=WIDTH)
 
     # Add "District Nutrition Profile" text
-    pdf.set_font('Arjun-Wide', '', 20)
+    pdf.set_font('Chandas', '', 20)
     pdf.set_text_color(255, 255, 255)
-    banner_text = "ftyk iks\"k.k izksQkby"
+    banner_text = u'इण्टरनेट पर हिन्दी के साधन'
     pdf.set_xy(100, 6)
-    pdf.cell(80, 20, banner_text.upper())
+    pdf.cell(80, 20, banner_text)
 
     # Add orange rectangle banner
     pdf.set_draw_color(231, 121, 37)
@@ -212,24 +212,24 @@ def create_first_page(pdf):
     pdf.rect(x=0, y=40.5, w=WIDTH, h=10, style='F')
 
     # Add District, State and Month
-    pdf.set_font('Roboto-Bold', 'B', 13)
+    pdf.set_font('Gargi', '', 13)
     pdf.set_text_color(255, 255, 255)
     orangeBanner_text = district[3].upper() + " | " + district[1].upper()
     pdf.set_xy(7, 41)
-    pdf.cell(186, 10, orangeBanner_text, align='L')
-    pdf.cell(10, 10, 'MARCH 2022', align='R')
+    pdf.cell(186, 10, u'{}'.format(orangeBanner_text), align='L')
+    pdf.cell(10, 10, u'सादगि 2022', align='R')
 
     # About DNPs: Title
-    pdf.set_font('Roboto-Bold', 'B', 13)
+    pdf.set_font('Gargi', '', 13)
     pdf.set_text_color(231, 121, 37)
     pdf.set_xy(7, 54)
-    aboutDNP_text = "About District Nutrition Profiles:"
+    aboutDNP_text = u"दर्शाता जागरुक वास्तविक किके सादगि:"
     pdf.cell(100, 10, aboutDNP_text, align='L')
     # About DNPs: Description text
-    pdf.set_font('Roboto-Regular', '', 10)
+    pdf.set_font('Gargi', '', 10)
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(7, 63)
-    DNPdesc_text = "District Nutrition Profiles (DNPs) are available for 707 districts in India. They present trends for key nutrition and health outcomes and their cross-sectoral determinants in a district. The DNPs are based on data from the National Family Health Survey (NFHS)-4 (2015-2016) and NFHS-5 (2019-2020). They are aimed primarily at district administrators, state functionaries, local leaders, and development actors working at the district-level."
+    DNPdesc_text = u"होसके किके दर्शाता विकासक्षमता अतित विकास तरहथा। दर्शाता जागरुक वास्तविक किके सादगि द्वारा मर्यादित वर्णन होने रखति दोषसके यन्त्रालय विकास ७हल संदेश पासपाई व्यवहार सामूहिक मजबुत हुआआदी भोगोलिक हीकम बिन्दुओ मुख्यतह प्राथमिक होसके जाता कार्य अपने उद्योग प्रव्रुति आधुनिक बिन्दुओ निर्माण बलवान भारत सकती दिनांक अर्थपुर्ण दौरान सहित सादगि गुजरना बातसमय भारत हिंदी वेबजाल स्वतंत्र विकेन्द्रियकरण"
     pdf.multi_cell(115, 4.5, DNPdesc_text, align='J')
 
     # Add district map
@@ -237,53 +237,53 @@ def create_first_page(pdf):
     pdf.image(map_path, x=125, y=53, w=75, h=40)
     # map caption
     figure1_text = "Figure 1:"
-    mapCaption_text = "Map highlights district {} in the state/UT of {}".format(district[3], district[1])
+    mapCaption_text = "लाभो सक्षम विश्लेषण {} अमितकुमार कराना करने/दिये यधपि {}".format(district[3], district[1])
     pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Bold', 'B', 7)
+    pdf.set_font('Roboto-Regular', '', 7)
     pdf.set_xy(125, 92)
     pdf.cell(9, 7, figure1_text, align='L')
     pdf.set_xy(125+9+1.5, 92)
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(60, 7, mapCaption_text[0:55]+'-', align='L')
+    pdf.set_font('Gargi', '', 7)
+    pdf.cell(60, 7, u'{}'.format(mapCaption_text[0:55])+'-', align='L')
     pdf.set_xy(125, 95)
-    pdf.cell(70, 7, mapCaption_text[55:], align='L')
+    pdf.cell(70, 7, u'{}'.format(mapCaption_text[55:]), align='L')
 
     # Add framework as image
     pdf.image("./resources/framework.png", x=8, y=105, w=90)
     # Add framework caption
     source_text = "Source:"
-    frameworkCaption_text = "Adapted from Black et al. (2008)"
+    frameworkCaption_text = "विनिमय बिन्दुओ सीमित दिये यधपि ध्वनि (2008)"
     pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Bold', 'B', 7)
+    pdf.set_font('Gargi', '', 7)
     pdf.set_xy(8, 170)
-    pdf.cell(7, 7, source_text, align='L')
+    pdf.cell(7, 7, u'{}'.format(source_text), align='L')
     pdf.set_xy(8+7+2, 170)
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(60, 7, frameworkCaption_text, align='L')
+    pdf.set_font('Gargi', '', 7)
+    pdf.cell(60, 7, u'{}'.format(frameworkCaption_text), align='L')
 
     # Factors for child undernutrition: Title
-    pdf.set_font('Roboto-Bold', 'B', 13)
+    pdf.set_font('Gargi', '', 13)
     pdf.set_text_color(231, 121, 37)
     pdf.set_xy(100, 100)
-    undernutrition_text = "What factors lead to child undernutrition?"
-    pdf.cell(100, 10, undernutrition_text, align='L')
+    undernutrition_text = "लाभो सक्षम विश्लेषण अमितकुमार कराना करने अनुकूल?"
+    pdf.cell(100, 10, u'{}'.format(undernutrition_text), align='L')
     # Child undernutrition: Description text
-    pdf.set_font('Roboto-Regular', '', 10)
+    pdf.set_font('Gargi', '', 10)
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(100, 110)
-    undernutritionDesc_text = "Given the focus of India’s national nutrition mission on child undernutrition , the DNPs focus in on the determinants of child undernutrition (Figure on the left). Multiple determinants of suboptimal child nutrition and development contribute to the outcomes seen at the district-level. Different types of interventions can influence these determinants. Immediate determinants include inadequacies in food, health, and care for infants and young children, especially in the first two years of life. Nutrition-specific interventions such as health service delivery at the right time during pregnancy and early childhood can affect immediate determinants. Underlying and basic determinants include women’s status, household food security, hygiene, and socio-economic conditions. Nutrition-sensitive interventions such as social safety nets, sanitation programs, women’s empowerment, and agriculture programs can affect underlying and basic determinants."
-    pdf.multi_cell(102, 4.5, undernutritionDesc_text, align='J')
+    undernutritionDesc_text = "यधपि बातसमय वर्तमान ध्येय हमारी जिवन एसलिये वार्तालाप विकेन्द्रियकरण विभाग रचना स्वतंत्र व्याख्यान अमितकुमार विकसित व्रुद्धि विकेन्द्रियकरण बाटते खण्ड रिती उद्योग हुएआदि बाजार पहेला हैं। बातसमय विकेन्द्रियकरण ढांचामात्रुभाषा विकास जागरुक भोगोलिक जिवन रचना उद्योग समस्याए पहोच। कार्य बदले मर्यादित मुश्किले लाभो दौरान बातसमय पत्रिका एसेएवं भेदनक्षमता रखति ढांचा संस्था अविरोधता अन्य कार्य"
+    pdf.multi_cell(102, 4.5, u'{}'.format(undernutritionDesc_text), align='J')
 
     # Add grey rectangle
     pdf.set_draw_color(109, 111, 113)
     pdf.set_fill_color(109, 111, 113)
     pdf.rect(x=7, y=183, w=WIDTH-14, h=10, style='F')
     # Add text into the grey bar
-    greyBar_text = "District demographic profile, 2019-20"
-    pdf.set_font('Roboto-Bold', 'B', 13)
+    greyBar_text = "लाभो सक्षम विश्लेषण, 2019-20"
+    pdf.set_font('Gargi', '', 13)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(10, 183)
-    pdf.cell(100, 10, greyBar_text, align='L')
+    pdf.cell(100, 10, u'{}'.format(greyBar_text), align='L')
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
@@ -1307,14 +1307,29 @@ def create_report(filename):
     pdf.set_auto_page_break(auto=False)
 
     #Add custom fonts
+    pdf.add_font('Gargi', '',
+                './custom_fonts/gargi.ttf',
+                uni=True)
+    pdf.add_font('Arjun-Regular', '',
+                './custom_fonts/Arjun-Wide-Regular.ttf',
+                uni=True)
+    pdf.add_font('Mangal', '',
+                './custom_fonts/MANGAL.ttf',
+                uni=True)
+    pdf.add_font('Lohit', '',
+                './custom_fonts/Lohit-Devanagari.ttf',
+                uni=True)
+    pdf.add_font('Chandas', '',
+                './custom_fonts/arial-unicode-ms.ttf',
+                uni=True)
+    pdf.add_font('Roboto-Bold', 'B',
+                './custom_fonts/Roboto-Bold.ttf',
+                uni=True)
     pdf.add_font('Roboto-Regular', '',
                 './custom_fonts/Roboto-Regular.ttf',
                 uni=True)
     pdf.add_font('Roboto-Bold', 'B',
                 './custom_fonts/Roboto-Bold.ttf',
-                uni=True)
-    pdf.add_font('Arjun-Wide', '',
-                './custom_fonts/Arjun-Wide-Regular.ttf',
                 uni=True)
 
     # First Page
@@ -1322,16 +1337,16 @@ def create_report(filename):
     create_first_page(pdf)
 
     # Second Page
-    # pdf.add_page()
-    # create_second_page(pdf)
+    pdf.add_page()
+    create_second_page(pdf)
 
     # Third Page
-    # pdf.add_page()
-    # create_third_page(pdf)
+    pdf.add_page()
+    create_third_page(pdf)
 
     # Fourth Page
-    # pdf.add_page()
-    # create_fourth_page(pdf)
+    pdf.add_page()
+    create_fourth_page(pdf)
 
     #create a sub-folder
     path = 'generated_dnp/comparable_dnp_hindi'
@@ -1341,15 +1356,17 @@ def create_report(filename):
     pdf.output(dirName+'/'+filename, "F")
 
     # Success message
-    print(district[3] + " of " + district[1] + " generated.")
+    print(district[0] + "." + district[3] + " of " + district[1] + " generated.")
 
 #Read CSV file
-with open("./data/csv/comparable_district_data_temp.csv", 'r') as infile:
+# comparable_district_data_temp.csv --> Temporary file with 6 rows for testing
+# comparable_district_data.csv --> Actual file 575 rows
+with open("./data/csv/comparable_district_data.csv", 'r') as infile:
     district_reader = csv.reader(infile, delimiter=",")
     district_header = next(district_reader)
     for district in district_reader:
         # Read State level data
-        with open("./data/csv/comparable_state_data_temp.csv", 'r') as infile:
+        with open("./data/csv/comparable_state_data.csv", 'r') as infile:
             state_reader = csv.reader(infile, delimiter=",")
             state_header = next(state_reader)
             for state in state_reader:
