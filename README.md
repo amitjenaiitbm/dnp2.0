@@ -5,6 +5,10 @@ Install
 2. Install FPDF2 (https://github.com/PyFPDF/fpdf2)
   - pip install fpdf2
 
+Run the scripts in the terminal to generate the DNPs. The generated DNPs will be auto saved in the respective folders for the states.
+1. python3 comparable_dnp_english.py
+2. python3 non_comparable_dnp_english.py
+
 Total
 1. Comparable districts - 575
 2. Non-Comparable districts - 132
