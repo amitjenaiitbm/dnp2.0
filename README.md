@@ -16,3 +16,6 @@ Total
 Sample PDFs: Please check the folder "sample_dnp" for one from each type.
 1. North & Middle Andaman of Andaman and Nicobar Islands (Comparable)
 2. East Siang of Arunachal Pradesh (Non-comparable)
+
+Note:
+- Check the documentation and style guide pdf for more details and previous versions.
