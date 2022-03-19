@@ -6,7 +6,7 @@ from fpdf import FPDF
 
 WIDTH = 210
 HEIGHT = 297
-NA_desc_text = "Note: NA refers to data is unavailable for a given round of NFHS data."
+NA_desc_text = "Note: NA refers to data are unavailable for a given round of NFHS data."
 
 def round_str(value):
     if value != '':
@@ -129,14 +129,17 @@ def draw_green_lollipop(pdf, x1, y1, district_2016, state_2016):
         # Write the district value of 2016
         pdf.set_font('Roboto-Regular', '', 8)
         pdf.set_text_color(136, 180, 64)
-        percent_text_pos = x2 + 3
+        if (float(state_2016) - float(district_2016) >= 0) and (float(state_2016) - float(district_2016) <= 14):
+            percent_text_pos = x3 + 2
+        else:
+            percent_text_pos = x2 + 3
         pdf.set_xy(percent_text_pos, y1-1.5)
         pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
     else:
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
         pdf.set_text_color(136, 180, 64)
-        pdf.set_xy(x1, y1)
+        pdf.set_xy(x1, y1-1)
         pdf.cell(4, 3, "NA", align="L")
 
 def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
@@ -156,14 +159,17 @@ def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
         # Write the district value of 2019
         pdf.set_font('Roboto-Regular', '', 8)
         pdf.set_text_color(231, 121, 37)
-        percent_text_pos = x2 + 3
+        if (float(state_2019) - float(district_2019) >= 0) and (float(state_2019) - float(district_2019) <= 14):
+            percent_text_pos = x3 + 2
+        else:
+            percent_text_pos = x2 + 3
         pdf.set_xy(percent_text_pos, y1-1.5)
         pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
     else:
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
         pdf.set_text_color(231, 121, 37)
-        pdf.set_xy(x1, y1)
+        pdf.set_xy(x1, y1-1)
         pdf.cell(4, 3, "NA", align="L")
 
 def put_legends(pdf, state_name, put_state_name, y):
@@ -188,12 +194,12 @@ def put_legends(pdf, state_name, put_state_name, y):
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(WIDTH-16, y+7)
     pdf.cell(4, 4, "2016", align="C")
-    # Write 2019
+    # Write 2020
     pdf.image("./resources/orange_circle.png", x=WIDTH-18, y=y+15, w=8)
     pdf.set_font('Roboto-Bold', 'B', 8)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(WIDTH-16, y+17)
-    pdf.cell(4, 4, "2019", align="C")
+    pdf.cell(4, 4, "2020", align="C")
 
 def create_first_page(pdf):
     #Top banner
@@ -237,16 +243,17 @@ def create_first_page(pdf):
     pdf.image(map_path, x=125, y=53, w=75, h=40)
     # map caption
     figure1_text = "Figure 1:"
-    mapCaption_text = "Map highlights district {} in the state/UT of {}".format(district[3], district[1])
+    mapCaption_text1 = "Map highlights district {}".format(district[3])
+    mapCaption_text2 = "in the state/UT of {}".format(district[1])
     pdf.set_text_color(0, 0, 0)
     pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_xy(125, 92)
+    pdf.set_xy(130, 92)
     pdf.cell(9, 7, figure1_text, align='L')
-    pdf.set_xy(125+9+1.5, 92)
+    pdf.set_xy(130+9+1.5, 92)
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(60, 7, mapCaption_text[0:55]+'-', align='L')
-    pdf.set_xy(125, 95)
-    pdf.cell(70, 7, mapCaption_text[55:], align='L')
+    pdf.cell(60, 7, mapCaption_text1, align='L')
+    pdf.set_xy(130, 95)
+    pdf.cell(70, 7, mapCaption_text2, align='L')
 
     # Add framework as image
     pdf.image("./resources/framework.png", x=8, y=105, w=90)
@@ -271,7 +278,7 @@ def create_first_page(pdf):
     pdf.set_font('Roboto-Regular', '', 10)
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(100, 110)
-    undernutritionDesc_text = "Given the focus of India’s national nutrition mission on child undernutrition , the DNPs focus in on the determinants of child undernutrition (Figure on the left). Multiple determinants of suboptimal child nutrition and development contribute to the outcomes seen at the district-level. Different types of interventions can influence these determinants. Immediate determinants include inadequacies in food, health, and care for infants and young children, especially in the first two years of life. Nutrition-specific interventions such as health service delivery at the right time during pregnancy and early childhood can affect immediate determinants. Underlying and basic determinants include women’s status, household food security, hygiene, and socio-economic conditions. Nutrition-sensitive interventions such as social safety nets, sanitation programs, women’s empowerment, and agriculture programs can affect underlying and basic determinants."
+    undernutritionDesc_text = "Given the focus of India’s national nutrition mission on child undernutrition, the DNPs focus on the determinants of child undernutrition (Figure on the left). Multiple determinants of suboptimal child nutrition and development contribute to the outcomes seen at the district-level. Different types of interventions can influence these determinants. Immediate determinants include inadequacies in food, health, and care for infants and young children, especially in the first two years of life. Nutrition-specific interventions such as health service delivery at the right time during pregnancy and early childhood can affect immediate determinants. Underlying and basic determinants include women’s status, household food security, hygiene, and socio-economic conditions. Nutrition-sensitive interventions such as social safety nets, sanitation programs, women’s empowerment, and agriculture programs can affect underlying and basic determinants."
     pdf.multi_cell(102, 4.5, undernutritionDesc_text, align='J')
 
     # Add grey rectangle
@@ -429,7 +436,7 @@ def create_first_page(pdf):
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_xy(8, 270)
     pdf.cell(9, 3, acknowledgement_text, align='L')
-    pdf.set_xy(8+21+0.5, 270)
+    pdf.set_xy(8+21+1.0, 270)
     pdf.set_font('Roboto-Regular', '', 7)
     pdf.cell(155, 3, acknowledgement_text1[0:152], align='L')
     pdf.set_xy(8, 273)
@@ -562,10 +569,10 @@ def create_second_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(125, 126)
+    pdf.set_xy(123, 126)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
+    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Top Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -702,10 +709,10 @@ def create_second_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(125, 265)
+    pdf.set_xy(123, 265)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
+    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -758,7 +765,7 @@ def create_third_page(pdf):
     # Top section - indicator labels
     take100_IFA_preg = "Consumed IFA 100+ days (pregnant women)"
     ifa_180 = "Consumed IFA 180+ days (pregnant women)"
-    iycf_earlybf35 = "Early initiation of breastfeeding (children < 3 yr)"
+    iycf_earlybf35 = "Early initiation of breastfeeding (children <3 yrs)"
     iycf_exclbf0 = "Exclusive breastfeeding"
     brestfeed12 = "Continued breastfeeding at 2 years"
     n_iycf_introfood = "Timely introduction of complementary foods"
@@ -846,10 +853,10 @@ def create_third_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(125, 137)
+    pdf.set_xy(123, 137)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
+    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Top Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -865,9 +872,9 @@ def create_third_page(pdf):
     im_pd3_text3 = "• What additional data are needed to understand diets and/or other determinants?"
     pdf.set_font('Roboto-Regular', '', 9)
     pdf.set_xy(12, 148)
-    pdf.cell(165, 5, im_pd1_text3[0:140], align='L')
+    pdf.cell(165, 5, im_pd1_text3[0:139], align='L')
     pdf.set_xy(14, 152)
-    pdf.cell(165, 5, im_pd1_text3[140:], align='L')
+    pdf.cell(165, 5, im_pd1_text3[139:], align='L')
     pdf.set_xy(12, 156)
     pdf.cell(165, 5, im_pd2_text3, align='L')
     pdf.set_xy(12, 160)
@@ -955,10 +962,10 @@ def create_third_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(125, 255.5)
+    pdf.set_xy(123, 255.5)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
+    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -1260,10 +1267,10 @@ def create_fourth_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(125, 259)
+    pdf.set_xy(123, 259)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(72.5, 10, NA_desc_text[5:], align='R')
+    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
