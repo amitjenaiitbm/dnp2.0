@@ -483,9 +483,10 @@ def create_second_page(pdf):
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(WIDTH-84, 63.5)
     pdf.cell(40, 10, "Low-birth weight", align='L')
-    # Replace the line below when for ch_lbw burden data is available
-    # pdf.cell(40, 10, round_str(district[13]), align='L')
-    pdf.cell(40, 10, "NA", align='L')
+    if district[13] != '':
+        pdf.cell(40, 10, round_str(district[13]), align='L')
+    else:
+        pdf.cell(40, 10, "NA", align='L')
     pdf.set_xy(WIDTH-84, 69.5)
     pdf.cell(40, 10, "Stunted", align='L')
     pdf.cell(40, 10, round_str(district[16]), align='L')
