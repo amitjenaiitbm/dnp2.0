@@ -365,7 +365,7 @@ def create_first_page(pdf):
     pdf.cell(55, 10, birthsRegistered_text2, align='L')
 
     # source
-    pdf.image("./resources/hindi/hn_1_source.png", x=8, y=248, w=190)
+    pdf.image("./resources/hindi/hn_1_source.png", x=8, y=248, w=165)
     # Horizontal line
     pdf.set_draw_color(109, 111, 113)
     pdf.set_line_width(0.75)
@@ -385,17 +385,8 @@ def create_first_page(pdf):
     pdf.cell(170, 3, citation_text1[167:], align='L')
 
     # Acknowledgement
+    pdf.image("./resources/hindi/hn_1_ack.png", x=8, y=270, w=165)
     acknowledgement_text = "Acknowledgement:"
-    acknowledgement_text1 = "Financial support was provided by the Bill & Melinda Gates Foundation through POSHAN, led by the International Food Policy Research Institute. We thank Amit Jena (Independent Researcher) for design and programming support."
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_xy(8, 270)
-    pdf.cell(9, 3, acknowledgement_text, align='L')
-    pdf.set_xy(8+21+1.0, 270)
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(155, 3, acknowledgement_text1[0:152], align='L')
-    pdf.set_xy(8, 273)
-    pdf.cell(155, 3, acknowledgement_text1[152:], align='L')
 
     # Logos
     img_width = 120
