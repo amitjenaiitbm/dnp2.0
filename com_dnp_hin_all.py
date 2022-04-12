@@ -583,7 +583,7 @@ def create_third_page(pdf):
     draw_gridlines(pdf, im_lollipop_gap, 17, 135)
 
     # Put the indicators
-    pdf.image("./resources/hindi/hn_3_02.png", x=20, y=18, h=115)
+    pdf.image("./resources/hindi/hn_3_02.png", x=22, y=18, h=115)
 
     # Put the lollipops
     # take100_IFA_preg = "Consumed IFA 100+ days (pregnant women)"
@@ -627,37 +627,16 @@ def create_third_page(pdf):
     pdf.image("./resources/hindi/hn_NA.png", x=120, y=140.5, h=3.5)
 
     # Top Points of discussion grey bar
-    pdf.set_draw_color(183, 179, 160)
-    pdf.set_fill_color(183, 179, 160)
-    pdf.rect(x=7, y=144, w=WIDTH-14, h=21, style='F')
-    # Top Points of discussion: text
-    pdf.set_font('Roboto-Bold', 'B', 9)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(10, 144)
-    pdf.cell(50, 5, "Points of discussion:", align='L')
-    im_pd1_text3 = "• What are the trends in infant and young child feeding (timely initiation of breastfeeding, exclusive breastfeeding, timely initiation of complementary feeding, and adequate diet)? What can be done to improve infant and young child feeding?"
-    im_pd2_text3 = "• What are the trends in IFA consumption among pregnant women in the district? How can the consumption be improved?"
-    im_pd3_text3 = "• What additional data are needed to understand diets and/or other determinants?"
-    pdf.set_font('Roboto-Regular', '', 9)
-    pdf.set_xy(12, 148)
-    pdf.cell(165, 5, im_pd1_text3[0:139], align='L')
-    pdf.set_xy(14, 152)
-    pdf.cell(165, 5, im_pd1_text3[139:], align='L')
-    pdf.set_xy(12, 156)
-    pdf.cell(165, 5, im_pd2_text3, align='L')
-    pdf.set_xy(12, 160)
-    pdf.cell(165, 5, im_pd3_text3, align='L')
+    pdf.image("./resources/hindi/hn_3_03.png", x=7, y=144, h=21)
 
     # Add bottom bar
     pdf.set_draw_color(152, 56, 87)
     pdf.set_fill_color(152, 56, 87)
     pdf.rect(x=7, y=166, w=WIDTH-14, h=10, style='F')
     # Add text into the bottom bar
-    bottom_Bar3_text = "Underlying determinants"
-    pdf.set_font('Roboto-Bold', 'B', 13)
+    pdf.image("./resources/hindi/hn_3_04.png", x=10, y=167.5, h=6.5)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(10, 166)
-    pdf.cell(100, 10, bottom_Bar3_text, align='L')
+    pdf.set_xy(110, 166)
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
@@ -683,24 +662,8 @@ def create_third_page(pdf):
     draw_gridlines(pdf, un_lollipop_gap, 177, 254)
 
     # Put the indicators
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_xy(un_indicator_x, un_indicator_y)
-    pdf.cell(un_cell_width, 10, school10yr_women, align='R')
-    pdf.set_xy(un_indicator_x, un_indicator_y+10)
-    pdf.cell(un_cell_width, 10, wo2024_mar18, align='R')
-    pdf.set_xy(un_indicator_x, un_indicator_y+20)
-    pdf.cell(un_cell_width, 10, wom_pregmothers_1519, align='R')
-    pdf.set_xy(un_indicator_x, un_indicator_y+30)
-    pdf.cell(un_cell_width, 10, imp_latrine, align='R')
-    pdf.set_xy(un_indicator_x, un_indicator_y+40)
-    pdf.cell(un_cell_width, 10, imp_drinkw, align='R')
-    pdf.set_xy(un_indicator_x, un_indicator_y+50)
-    pdf.cell(un_cell_width, 10, safe_disp, align='R')
-    pdf.set_xy(un_indicator_x, un_indicator_y+60)
-    pdf.cell(un_cell_width, 10, bpl_card, align='R')
-    pdf.set_xy(un_indicator_x, un_indicator_y+70)
-    pdf.cell(un_cell_width, 10, hh_healthins, align='R')
+    pdf.image("./resources/hindi/hn_3_05.png", x=12, y=177, h=75)
+
     # Put the lollipops
     # school10yr_women = "Women with ≥10 years of education"
     draw_green_lollipop(pdf, im_lollipop_gap, 178, district[77], state[53])
@@ -731,29 +694,7 @@ def create_third_page(pdf):
     pdf.image("./resources/hindi/hn_NA.png", x=120, y=259, h=3.5)
 
     # Bottom Points of discussion grey bar
-    pdf.set_draw_color(183, 179, 160)
-    pdf.set_fill_color(183, 179, 160)
-    pdf.rect(x=7, y=262, w=WIDTH-14, h=26, style='F')
-    # Bottom Points of discussion: text
-    pdf.set_font('Roboto-Bold', 'B', 9)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(10, 263)
-    pdf.cell(50, 5, "Points of discussion:", align='L')
-    un_pd1_text3 = "• How can the district increase women’s literacy, and reduce early marriage, if needed?"
-    un_pd2_text3 = "• How does the district perform on providing drinking water and sanitation to its residents? Since sanitation and hygiene play an important role in improving nutrition outcomes, how can all aspects of sanitation be improved?"
-    un_pd3_text3 = "• How can programs that address underlying and basic determinants (education, poverty, gender) be strengthened?"
-    un_pd4_text3 = "• What additional data are needed on food systems, poverty or other underlying determinants?"
-    pdf.set_font('Roboto-Regular', '', 9)
-    pdf.set_xy(12, 267)
-    pdf.cell(170, 5, un_pd1_text3, align='L')
-    pdf.set_xy(12, 271)
-    pdf.cell(165, 5, un_pd2_text3[0:130], align='L')
-    pdf.set_xy(14, 275)
-    pdf.cell(165, 5, un_pd2_text3[130:], align='L')
-    pdf.set_xy(12, 279)
-    pdf.cell(170, 5, un_pd3_text3, align='L')
-    pdf.set_xy(12, 283)
-    pdf.cell(170, 5, un_pd4_text3, align='L')
+    pdf.image("./resources/hindi/hn_3_06.png", x=7, y=262.5, h=26)
 
     #Page number-3
     #Left horizontal line
@@ -763,6 +704,7 @@ def create_third_page(pdf):
     # Number 2
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_xy(WIDTH/2-1.5, 290)
+    pdf.set_text_color(0, 0, 0)
     pdf.cell(3, 5, "3", align='C')
     #Right horizontal line
     pdf.set_draw_color(109, 111, 113)
@@ -775,31 +717,14 @@ def create_fourth_page(pdf):
     pdf.set_fill_color(91, 83, 134)
     pdf.rect(x=7, y=5, w=WIDTH-14, h=10, style='F')
     # Add text into the top bar
-    top_Bar4_text = "Trends in coverage of interventions across the first 1,000 days"
-    pdf.set_font('Roboto-Bold', 'B', 13)
+    pdf.image("./resources/hindi/hn_4_01.png", x=10, y=6, h=6)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(10, 5)
-    pdf.cell(100, 10, top_Bar4_text, align='L')
+    pdf.set_xy(110, 5)
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
     # Add vertical top bar
-    pdf.set_draw_color(91, 83, 134)
-    pdf.set_fill_color(91, 83, 134)
-    pdf.rect(x=7, y=25, w=8, h=84, style='F')
-    pdf.image("./resources/vert_bar_first4.png", x=9, y=43, w=4.5)
-
-    # Add vertical middle bar
-    pdf.set_draw_color(91, 83, 134)
-    pdf.set_fill_color(91, 83, 134)
-    pdf.rect(x=7, y=113, w=8, h=54, style='F')
-    pdf.image("./resources/vert_bar_second4.png", x=9, y=119, w=4.5)
-
-    # Add vertical bottom bar
-    pdf.set_draw_color(91, 83, 134)
-    pdf.set_fill_color(91, 83, 134)
-    pdf.rect(x=7, y=171, w=8, h=83, style='F')
-    pdf.image("./resources/vert_bar_third4.png", x=9, y=197, w=4.5)
+    pdf.image("./resources/hindi/hn_4_02.png", x=7, y=25, h=229)
 
     # Put Top legends
     put_legends(pdf, district[1], 0, 15)
@@ -1031,34 +956,17 @@ def create_fourth_page(pdf):
     pdf.image("./resources/hindi/hn_NA.png", x=120, y=262, h=3.5)
 
     # Bottom Points of discussion grey bar
-    pdf.set_draw_color(183, 179, 160)
-    pdf.set_fill_color(183, 179, 160)
-    pdf.rect(x=7, y=266, w=WIDTH-14, h=22, style='F')
-    # Bottom Points of discussion: text
-    pdf.set_font('Roboto-Bold', 'B', 9)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(10, 267)
-    pdf.cell(50, 5, "Points of discussion:", align='L')
-    co_pd1_text4 = "• How does the district perform on health and nutrition interventions along the continuum of care? Does it adequately provide both prenatal and postnatal services to women of reproductive age, pregnant women, new mothers and newborns?"
-    co_pd2_text4 = "• How has access to health and ICDS services changed over time (food supplementation, health and nutrition education and health checkups)?"
-    pdf.set_font('Roboto-Regular', '', 9)
-    pdf.set_xy(12, 271)
-    pdf.cell(165, 5, co_pd1_text4[0:130], align='L')
-    pdf.set_xy(13, 275)
-    pdf.cell(165, 5, co_pd1_text4[130:], align='L')
-    pdf.set_xy(12, 279)
-    pdf.cell(165, 5, co_pd2_text4[0:127], align='L')
-    pdf.set_xy(13, 283)
-    pdf.cell(165, 5, co_pd2_text4[127:], align='L')
+    pdf.image("./resources/hindi/hn_4_04.png", x=7, y=266, h=22)
 
     #Page number-4
     #Left horizontal line
     pdf.set_draw_color(109, 111, 113)
     pdf.set_line_width(0.75)
     pdf.line(0, 292, WIDTH/2-5, 292)
-    # Number 2
+    # Number 4
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_xy(WIDTH/2-1.5, 290)
+    pdf.set_text_color(0, 0, 0)
     pdf.cell(3, 5, "4", align='C')
     #Right horizontal line
     pdf.set_draw_color(109, 111, 113)
