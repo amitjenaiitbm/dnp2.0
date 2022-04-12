@@ -356,12 +356,10 @@ def create_second_page(pdf):
     pdf.set_fill_color(41, 119, 115)
     pdf.rect(x=7, y=5, w=WIDTH-14, h=10, style='F')
     # Add text into the top bar
-    top_Bar2_text = "The state of nutrition outcomes among children (<5 years)"
-    pdf.set_font('Roboto-Bold', 'B', 13)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(10, 5)
-    pdf.cell(100, 10, top_Bar2_text, align='L')
+    pdf.image("./resources/hindi/hn_2_01.png", x=10, y=7, h=7)
     pdf.set_font('Roboto-Bold', 'B', 12)
+    pdf.set_text_color(255, 255, 255)
+    pdf.set_xy(110, 5);
     pdf.cell(90, 10, district[3], align='R')
 
     # Put Top legends
