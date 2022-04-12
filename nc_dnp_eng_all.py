@@ -263,11 +263,11 @@ def create_first_page(pdf):
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(19, 233)
     pdf.cell(55, 10, liveBirth_text1, align='L')
-    # Institutional birth number
+    # Institutional birth number number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(85, 220)
-    if district[9] != '':
+    if district[10] != '':
         pdf.cell(40, 20, str("{:,}".format(round(float(district[10])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
@@ -284,7 +284,7 @@ def create_first_page(pdf):
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(152, 220)
-    if district[10] != '':
+    if district[9] != '':
         pdf.cell(40, 20, str("{:,}".format(round(float(district[9])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
