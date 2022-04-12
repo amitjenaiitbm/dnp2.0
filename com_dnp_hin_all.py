@@ -367,47 +367,28 @@ def create_second_page(pdf):
 
     # Put the burden details
     # Background box image
-    pdf.image("./resources/burden_top2.png", x=WIDTH-85, y=60, w=77)
-    # Burden text: Title
-    burden_title_top = "Burden on nutrition outcomes (2020)"
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(WIDTH-86, 51)
-    pdf.cell(80, 10, burden_title_top, align='C')
-    # Burden text: Table header
-    pdf.set_font('Roboto-Bold', 'B', 8)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(WIDTH-86.5, 57.5)
-    pdf.cell(40, 10, "Indicators", align='C')
-    pdf.cell(40, 10, "No. of children (<5 yrs)", align='C')
+    pdf.image("./resources/hindi/hn_2_03.png", x=WIDTH-85, y=60, w=77)
     # Burden text: Table rows
     pdf.set_font('Roboto-Regular', '', 8)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(WIDTH-84, 63.5)
-    pdf.cell(40, 10, "Low-birth weight", align='L')
+    pdf.set_xy(165, 70)
     if district[13] != '':
         pdf.cell(40, 10, round_str(district[13]), align='L')
     else:
         pdf.cell(40, 10, "NA", align='L')
-    pdf.set_xy(WIDTH-84, 69.5)
-    pdf.cell(40, 10, "Stunted", align='L')
+    pdf.set_xy(165, 76)
     pdf.cell(40, 10, round_str(district[16]), align='L')
-    pdf.set_xy(WIDTH-84, 75)
-    pdf.cell(40, 10, "Wasted", align='L')
+    pdf.set_xy(165, 81)
     pdf.cell(40, 10, round_str(district[19]), align='L')
-    pdf.set_xy(WIDTH-84, 81)
-    pdf.cell(40, 10, "Severely wasted", align='L')
+    pdf.set_xy(165, 87)
     pdf.cell(40, 10, round_str(district[22]), align='L')
-    pdf.set_xy(WIDTH-84, 86.5)
-    pdf.cell(40, 10, "Underweight", align='L')
+    pdf.set_xy(165, 92.5)
     pdf.cell(40, 10, round_str(district[25]), align='L')
-    pdf.set_xy(WIDTH-84, 92.5)
-    pdf.cell(40, 10, "Overweight/obesity", align='L')
+    pdf.set_xy(165, 98.5)
     pdf.cell(40, 10, round_str(district[28]), align='L')
-    pdf.set_xy(WIDTH-84, 98.5)
-    pdf.cell(40, 10, "Anemia", align='L')
+    pdf.set_xy(165, 104.5)
     pdf.cell(40, 10, round_str(district[31]), align='L')
-    pdf.set_xy(WIDTH-84, 104)
+    pdf.set_xy(130, 110)
     pdf.set_font('Roboto-Bold', 'B', 8)
     pdf.cell(40, 10, "Total children", align='L')
     pdf.cell(40, 10, round_str(district[32]), align='L')
@@ -431,22 +412,7 @@ def create_second_page(pdf):
     draw_gridlines(pdf, ch_lollipop_gap, 19, 118)
 
     # Put the list of indicators
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(ch_indicator_x, ch_indicator_y)
-    pdf.cell(ch_cell_width, 10, ch_lbw, align='R')
-    pdf.set_xy(ch_indicator_x, ch_indicator_y+15)
-    pdf.cell(ch_cell_width, 10, ch_stunt, align='R')
-    pdf.set_xy(ch_indicator_x, ch_indicator_y+30)
-    pdf.cell(ch_cell_width, 10, ch_waste, align='R')
-    pdf.set_xy(ch_indicator_x, ch_indicator_y+45)
-    pdf.cell(ch_cell_width, 10, ch_wastesev, align='R')
-    pdf.set_xy(ch_indicator_x, ch_indicator_y+60)
-    pdf.cell(ch_cell_width, 10, ch_uweight, align='R')
-    pdf.set_xy(ch_indicator_x, ch_indicator_y+75)
-    pdf.cell(ch_cell_width, 10, ch_over, align='R')
-    pdf.set_xy(ch_indicator_x, ch_indicator_y+90)
-    pdf.cell(ch_cell_width, 10, ch_anemic, align='R')
+    pdf.image("./resources/hindi/hn_2_02.png", x=17, y=19, h=97)
 
     # Put the lollipops
     # ch_lbw = "Low-birth weight"
