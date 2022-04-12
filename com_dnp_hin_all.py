@@ -365,8 +365,8 @@ def create_first_page(pdf):
     pdf.cell(55, 10, birthsRegistered_text2, align='L')
 
     # source
-    pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=248, h=4)
-    pdf.image("./resources/hindi/hn_1_source_2.png", x=10, y=248, h=6)
+    pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=247.5, h=3)
+    pdf.image("./resources/hindi/hn_1_source_2.png", x=10, y=250.5, h=10)
     # Horizontal line
     pdf.set_draw_color(109, 111, 113)
     pdf.set_line_width(0.75)
