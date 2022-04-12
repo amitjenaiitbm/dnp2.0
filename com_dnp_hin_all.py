@@ -550,9 +550,9 @@ def create_third_page(pdf):
     pdf.set_fill_color(0, 96, 162)
     pdf.rect(x=7, y=5, w=WIDTH-14, h=10, style='F')
     # Add text into the top bar
-    pdf.image("./resources/hindi/hn_3_01.png", x=10, y=6.5, h=7)
+    pdf.image("./resources/hindi/hn_3_01.png", x=10, y=6.5, h=6)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(10, 5)
+    pdf.set_xy(110, 5)
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
@@ -583,32 +583,8 @@ def create_third_page(pdf):
     draw_gridlines(pdf, im_lollipop_gap, 17, 135)
 
     # Put the indicators
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_xy(im_indicator_x, im_indicator_y)
-    pdf.cell(im_cell_width, 10, take100_IFA_preg, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+10)
-    pdf.cell(im_cell_width, 10, ifa_180, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+20)
-    pdf.cell(im_cell_width, 10, iycf_earlybf35, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+30)
-    pdf.cell(im_cell_width, 10, iycf_exclbf0, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+40)
-    pdf.cell(im_cell_width, 10, n_iycf_cbf, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+50)
-    pdf.cell(im_cell_width, 10, n_iycf_introfood, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+60)
-    pdf.cell(im_cell_width, 10, n_iycf_minaccdiet0, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+70)
-    pdf.cell(im_cell_width, 10, n_iycf_mindd, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+80)
-    pdf.cell(im_cell_width, 10, n_iycf_minfreq, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+90)
-    pdf.cell(im_cell_width, 10, n_iycf_eff, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+100)
-    pdf.cell(im_cell_width, 10, n_iycf_swbvg, align='R')
-    pdf.set_xy(im_indicator_x, im_indicator_y+110)
-    pdf.cell(im_cell_width, 10, bottle, align='R')
+    pdf.image("./resources/hindi/hn_3_02.png", x=20, y=18, h=115)
+
     # Put the lollipops
     # take100_IFA_preg = "Consumed IFA 100+ days (pregnant women)"
     draw_green_lollipop(pdf, im_lollipop_gap, 18, district[53], state[29])
