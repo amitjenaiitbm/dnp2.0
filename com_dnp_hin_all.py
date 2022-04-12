@@ -273,30 +273,24 @@ def create_first_page(pdf):
         pdf.cell(40, 20, str("{:,}".format(round(float(district[5]))))+"/1,000", align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Sex ratio text
-    # pdf.image("./resources/hindi/hn_1_07.png", x=19.5, y=209, h=9)
 
     # Reproductive age number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(85, 193)
+    pdf.set_xy(84, 193)
     if district[6] != '':
         pdf.cell(40, 20, str("{:,}".format(round(float(district[6])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Reproductive age text
-    # pdf.image("./resources/hindi/hn_1_08.png", x=87, y=209, h=9)
 
     # Pregnant women number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(152, 193)
+    pdf.set_xy(151, 193)
     if district[7] != '':
         pdf.cell(40, 20, str("{:,}".format(round(float(district[7])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Pregnant women text
-    # pdf.image("./resources/hindi/hn_1_09.png", x=153, y=208.5, h=5)
 
     # Live birth number
     pdf.set_font('Roboto-Bold', 'B', 27)
@@ -306,8 +300,6 @@ def create_first_page(pdf):
         pdf.cell(40, 20, str("{:,}".format(round(float(district[8])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Live birth text
-    # pdf.image("./resources/hindi/hn_1_10.png", x=20, y=233, h=5)
 
     # Total children number
     pdf.set_font('Roboto-Bold', 'B', 27)
@@ -317,19 +309,15 @@ def create_first_page(pdf):
         pdf.cell(40, 20, str("{:,}".format(round(float(district[9])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Total children text
-    # pdf.image("./resources/hindi/hn_1_11.png", x=86, y=233, h=5)
 
     # Births registered number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(152, 220)
+    pdf.set_xy(151, 220)
     if district[10] != '':
         pdf.cell(40, 20, str("{:,}".format(round(float(district[10])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Births registered text
-    # pdf.image("./resources/hindi/hn_1_12.png", x=153, y=233, h=5)
 
     # source
     pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=247.5, h=3)
