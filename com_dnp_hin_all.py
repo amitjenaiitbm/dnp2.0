@@ -501,7 +501,7 @@ def create_second_page(pdf):
     draw_gridlines(pdf, wo_lollipop_gap, 165, 250)
 
     # Put the list of indicators
-    pdf.image("./resources/hindi/hn_2_07.png", x=7, y=165, h=80)
+    pdf.image("./resources/hindi/hn_2_07.png", x=6, y=167.5, h=80)
 
     # Put the lollipops
     # bmi_f_lowbmiout = "Underweight (BMI <18.5 kg/m²)"
@@ -527,21 +527,7 @@ def create_second_page(pdf):
     pdf.image("./resources/hindi/hn_NA.png", x=120, y=269, h=3.5)
 
     # Bottom Points of discussion grey bar
-    pdf.set_draw_color(183, 179, 160)
-    pdf.set_fill_color(183, 179, 160)
-    pdf.rect(x=7, y=273, w=WIDTH-14, h=15, style='F')
-    # Bottom Points of discussion: text
-    pdf.set_font('Roboto-Bold', 'B', 9)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(10, 274)
-    pdf.cell(50, 5, "Points of discussion:", align='L')
-    wo_pd1_text2 = "• What are the trends in underweight and anemia among women (15-49 yrs) in the district?"
-    wo_pd2_text2 = "• What are the trends in overweight/obesity and other nutrition-related non-communicable diseases in the district?"
-    pdf.set_font('Roboto-Regular', '', 9)
-    pdf.set_xy(12, 278)
-    pdf.cell(170, 5, wo_pd1_text2, align='L')
-    pdf.set_xy(12, 282)
-    pdf.cell(170, 5, wo_pd2_text2, align='L')
+    pdf.image("./resources/hindi/hn_2_09.png", x=7, y=273, h=15)
 
     #Page number-2
     #Left horizontal line
@@ -551,6 +537,7 @@ def create_second_page(pdf):
     # Number 2
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_xy(WIDTH/2-1.5, 290)
+    pdf.set_text_color(0, 0, 0)
     pdf.cell(3, 5, "2", align='C')
     #Right horizontal line
     pdf.set_draw_color(109, 111, 113)
