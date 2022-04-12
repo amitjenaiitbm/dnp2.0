@@ -255,17 +255,7 @@ def create_first_page(pdf):
     pdf.cell(60, 7, frameworkCaption_text, align='L')
 
     # Factors for child undernutrition: Title
-    pdf.set_font('Roboto-Bold', 'B', 13)
-    pdf.set_text_color(231, 121, 37)
-    pdf.set_xy(100, 100)
-    undernutrition_text = "What factors lead to child undernutrition?"
-    pdf.cell(100, 10, undernutrition_text, align='L')
-    # Child undernutrition: Description text
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(100, 110)
-    undernutritionDesc_text = "Given the focus of India’s national nutrition mission on child undernutrition, the DNPs focus on the determinants of child undernutrition (Figure on the left). Multiple determinants of suboptimal child nutrition and development contribute to the outcomes seen at the district-level. Different types of interventions can influence these determinants. Immediate determinants include inadequacies in food, health, and care for infants and young children, especially in the first two years of life. Nutrition-specific interventions such as health service delivery at the right time during pregnancy and early childhood can affect immediate determinants. Underlying and basic determinants include women’s status, household food security, hygiene, and socio-economic conditions. Nutrition-sensitive interventions such as social safety nets, sanitation programs, women’s empowerment, and agriculture programs can affect underlying and basic determinants."
-    pdf.multi_cell(102, 4.5, undernutritionDesc_text, align='J')
+    pdf.image("./resources/hindi/hn_1_05.png", x=102, y=103, w=100)
 
     # Add grey rectangle
     pdf.set_draw_color(109, 111, 113)
