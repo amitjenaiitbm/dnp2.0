@@ -550,11 +550,9 @@ def create_third_page(pdf):
     pdf.set_fill_color(0, 96, 162)
     pdf.rect(x=7, y=5, w=WIDTH-14, h=10, style='F')
     # Add text into the top bar
-    top_Bar3_text = "Immediate determinants"
-    pdf.set_font('Roboto-Bold', 'B', 13)
+    pdf.image("./resources/hindi/hn_3_01.png", x=10, y=6.5, h=7)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(10, 5)
-    pdf.cell(100, 10, top_Bar3_text, align='L')
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
