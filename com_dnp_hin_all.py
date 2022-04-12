@@ -207,7 +207,7 @@ def create_first_page(pdf):
 
     # Add "District Nutrition Profile" text
     # pdf.set_xy(100, 6)
-    pdf.image("./resources/hindi/hn_1_01.png", x=100, y=6)
+    pdf.image("./resources/hindi/hn_1_01.png", x=100, y=6, w=100)
 
     # Add orange rectangle banner
     pdf.set_draw_color(231, 121, 37)
@@ -223,7 +223,7 @@ def create_first_page(pdf):
     pdf.cell(10, 10, 'MARCH 2022', align='R')
 
     # About DNPs: Title
-    pdf.image("./resources/hindi/hn_1_02.png", x=7, y=54)
+    pdf.image("./resources/hindi/hn_1_02.png", x=7, y=54, w=100)
     # pdf.set_font('Roboto-Bold', 'B', 13)
     # pdf.set_text_color(231, 121, 37)
     # pdf.set_xy(7, 54)
