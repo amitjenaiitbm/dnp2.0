@@ -263,34 +263,34 @@ def create_first_page(pdf):
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(19, 233)
     pdf.cell(55, 10, liveBirth_text1, align='L')
-    # Total children number
+    # Institutional birth number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(85, 220)
     if district[9] != '':
-        pdf.cell(40, 20, str("{:,}".format(round(float(district[9])))), align='L')
+        pdf.cell(40, 20, str("{:,}".format(round(float(district[10])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Total children text
-    totalChildren_text1 = "Total number of children"
-    totalChildren_text2 = "under 5 yrs"
+    # Institutional birth text
+    totalChildren_text1 = "Number of"
+    totalChildren_text2 = "institutional births"
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(85, 233)
     pdf.cell(55, 10, totalChildren_text1, align='L')
     pdf.set_xy(85, 237)
     pdf.cell(55, 10, totalChildren_text2, align='L')
-    # Births registered number
+    # Total children number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(152, 220)
     if district[10] != '':
-        pdf.cell(40, 20, str("{:,}".format(round(float(district[10])))), align='L')
+        pdf.cell(40, 20, str("{:,}".format(round(float(district[9])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Births registered text
-    birthsRegistered_text1 = "Children under 5 yrs"
-    birthsRegistered_text2 = "whose births were registered"
+    # Total children text
+    birthsRegistered_text1 = "Total number of children"
+    birthsRegistered_text2 = "under 5 yrs"
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(152, 233)
