@@ -274,14 +274,8 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Sex ratio text
-    sexRatio_text1 = "Sex ratio (females per 1,000"
-    sexRatio_text2 = "males) of the total population"
-    pdf.set_font('Roboto-Bold', 'B', 10)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(19, 206)
-    pdf.cell(55, 10, sexRatio_text1, align='L')
-    pdf.set_xy(19, 210)
-    pdf.cell(55, 10, sexRatio_text2, align='L')
+    pdf.image("./resources/hindi/hn_1_07.png", x=19.5, y=209, h=9)
+
     # Reproductive age number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
@@ -291,14 +285,7 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Reproductive age text
-    reproductive_text1 = "Number of women in"
-    reproductive_text2 = "reproductive age (15–49 yrs)"
-    pdf.set_font('Roboto-Bold', 'B', 10)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(85, 206)
-    pdf.cell(55, 10, reproductive_text1, align='L')
-    pdf.set_xy(85, 210)
-    pdf.cell(55, 10, reproductive_text2, align='L')
+    pdf.image("./resources/hindi/hn_1_08.png", x=87, y=209, h=9)
     # Pregnant women number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
@@ -308,14 +295,8 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Pregnant women text
-    pregnantWomen_text1 = "Number of"
-    pregnantWomen_text2 = "pregnant women"
-    pdf.set_font('Roboto-Bold', 'B', 10)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(152, 206)
-    pdf.cell(55, 10, pregnantWomen_text1, align='L')
-    pdf.set_xy(152, 210)
-    pdf.cell(55, 10, pregnantWomen_text2, align='L')
+    pdf.image("./resources/hindi/hn_1_09.png", x=153, y=208.5, h=5)
+
     # Live birth number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
@@ -325,11 +306,8 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Live birth text
-    liveBirth_text1 = "Number of live births"
-    pdf.set_font('Roboto-Bold', 'B', 10)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(19, 233)
-    pdf.cell(55, 10, liveBirth_text1, align='L')
+    pdf.image("./resources/hindi/hn_1_10.png", x=20, y=233, h=5)
+
     # Total children number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
@@ -339,14 +317,8 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Total children text
-    totalChildren_text1 = "Total number of children"
-    totalChildren_text2 = "under 5 yrs"
-    pdf.set_font('Roboto-Bold', 'B', 10)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(85, 233)
-    pdf.cell(55, 10, totalChildren_text1, align='L')
-    pdf.set_xy(85, 237)
-    pdf.cell(55, 10, totalChildren_text2, align='L')
+    pdf.image("./resources/hindi/hn_1_11.png", x=86, y=233, h=5)
+
     # Births registered number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
@@ -356,14 +328,7 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Births registered text
-    birthsRegistered_text1 = "Children under 5 yrs"
-    birthsRegistered_text2 = "whose births were registered"
-    pdf.set_font('Roboto-Bold', 'B', 10)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(152, 233)
-    pdf.cell(55, 10, birthsRegistered_text1, align='L')
-    pdf.set_xy(152, 237)
-    pdf.cell(55, 10, birthsRegistered_text2, align='L')
+    pdf.image("./resources/hindi/hn_1_12.png", x=153, y=233, h=5)
 
     # source
     pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=247.5, h=3)
