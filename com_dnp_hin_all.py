@@ -461,46 +461,26 @@ def create_second_page(pdf):
 
     # Put the burden details
     # Background box image
-    pdf.image("./resources/burden_bottom2.png", x=WIDTH-85, y=198, w=77)
-    # Burden text: Title
-    burden_title_bottom = "Burden on nutrition outcomes (2020)"
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(WIDTH-86, 189)
-    pdf.cell(80, 10, burden_title_bottom, align='C')
-    # Burden text: Table header
-    pdf.set_font('Roboto-Bold', 'B', 8)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(WIDTH-86.5, 195.5)
-    pdf.cell(40, 10, "Indicators", align='C')
-    pdf.cell(40, 10, "No. of women (15-49 yrs)", align='C')
+    pdf.image("./resources/hindi/hn_2_08.png", x=WIDTH-85, y=191, w=77)
+
     # Burden text: Table rows
     pdf.set_font('Roboto-Regular', '', 8)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(WIDTH-84, 201.5)
-    pdf.cell(40, 10, "Underweight", align='L')
+    pdf.set_xy(166, 201)
     pdf.cell(40, 10, round_str(district[35]), align='L')
-    pdf.set_xy(WIDTH-84, 207.5)
-    pdf.cell(40, 10, "Overweight/obesity", align='L')
+    pdf.set_xy(166, 207)
     pdf.cell(40, 10, round_str(district[38]), align='L')
-    pdf.set_xy(WIDTH-84, 213)
-    pdf.cell(40, 10, "Hypertension", align='L')
+    pdf.set_xy(166, 213)
     pdf.cell(40, 10, round_str(district[41]), align='L')
-    pdf.set_xy(WIDTH-84, 218.5)
-    pdf.cell(40, 10, "Diabetes", align='L')
+    pdf.set_xy(166, 218)
     pdf.cell(40, 10, round_str(district[44]), align='L')
-    pdf.set_xy(WIDTH-84, 224.5)
-    pdf.cell(40, 10, "Anemia (non-preg)", align='L')
+    pdf.set_xy(166, 224)
     pdf.cell(40, 10, round_str(district[47]), align='L')
-    pdf.set_xy(WIDTH-84, 230.5)
-    pdf.cell(40, 10, "Anemia (preg)", align='L')
+    pdf.set_xy(166, 230)
     pdf.cell(40, 10, round_str(district[50]), align='L')
-    pdf.set_xy(WIDTH-84, 236)
-    pdf.set_font('Roboto-Bold', 'B', 8)
-    pdf.cell(40, 10, "Total women (preg)", align='L')
+    pdf.set_xy(166, 236)
     pdf.cell(40, 10, round_str(district[51]), align='L')
-    pdf.set_xy(WIDTH-84, 242)
-    pdf.cell(40, 10, "Total women", align='L')
+    pdf.set_xy(166, 242)
     pdf.cell(40, 10, round_str(district[52]), align='L')
 
     # Bottom section - indicator labels
@@ -521,20 +501,7 @@ def create_second_page(pdf):
     draw_gridlines(pdf, wo_lollipop_gap, 165, 250)
 
     # Put the list of indicators
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(wo_indicator_x, wo_indicator_y)
-    pdf.cell(wo_cell_width, 10, bmi_f_lowbmiout, align='R')
-    pdf.set_xy(wo_indicator_x, wo_indicator_y+15)
-    pdf.cell(wo_cell_width, 10, bmi_f_highbmi, align='R')
-    pdf.set_xy(wo_indicator_x, wo_indicator_y+30)
-    pdf.cell(wo_cell_width, 10, hypertension_women, align='R')
-    pdf.set_xy(wo_indicator_x, wo_indicator_y+45)
-    pdf.cell(wo_cell_width, 10, diabetes_women, align='R')
-    pdf.set_xy(wo_indicator_x, wo_indicator_y+60)
-    pdf.cell(wo_cell_width, 10, hb_f_anemia, align='R')
-    pdf.set_xy(wo_indicator_x, wo_indicator_y+75)
-    pdf.cell(wo_cell_width, 10, preg_anemia, align='R')
+    pdf.image("./resources/hindi/hn_2_07.png", x=7, y=165, h=80)
 
     # Put the lollipops
     # bmi_f_lowbmiout = "Underweight (BMI <18.5 kg/m²)"
