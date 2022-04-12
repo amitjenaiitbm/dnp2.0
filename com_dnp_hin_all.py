@@ -365,27 +365,30 @@ def create_first_page(pdf):
     pdf.cell(55, 10, birthsRegistered_text2, align='L')
 
     # source
-    pdf.image("./resources/hindi/hn_1_source.png", x=8, y=248, w=165)
+    pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=248, h=4)
+    pdf.image("./resources/hindi/hn_1_source_2.png", x=10, y=248, h=6)
     # Horizontal line
     pdf.set_draw_color(109, 111, 113)
     pdf.set_line_width(0.75)
     pdf.line(0,261, WIDTH, 261)
 
-    # citation
-    citation_text = "Citation:"
-    citation_text1 = "Singh. N., P.H. Nguyen, M. Jangid, S.K. Singh, R. Sarwal, N. Bhatia, R. Johnston, W. Joe, and P. Menon. 2022. District Nutrition Profile: {}, {}. New Delhi, India: International Food Policy Research Institute.".format(district[3], district[1])
+    # citation line-1
+    pdf.image("./resources/hindi/hn_1_citation_1.png", x=10, y=262, h=4)
+    citation_district = "{},".format(district[3])
     pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_xy(8, 263)
-    pdf.cell(9, 3, citation_text, align='L')
-    pdf.set_xy(8+9+1, 263)
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(170, 3, citation_text1[0:167]+'-', align='L')
-    pdf.set_xy(8, 266)
-    pdf.cell(170, 3, citation_text1[167:], align='L')
+    pdf.set_xy(169, 262.5)
+    pdf.cell(len(district[3]), 3, citation_district, align='L')
+    # citation line-2
+    citation_state = "{},".format(district[1])
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_font('Roboto-Regular', '', 7)
+    pdf.set_xy(9.5, 265)
+    pdf.cell(len(district[1]), 3, citation_state, align='L')
+    pdf.image("./resources/hindi/hn_1_citation_2.png", x=4+1.5*len(district[1]), y=265.5, h=3)
 
     # Acknowledgement
-    pdf.image("./resources/hindi/hn_1_ack.png", x=8, y=270, w=165)
+    pdf.image("./resources/hindi/hn_1_ack.png", x=10, y=269, h=7)
     acknowledgement_text = "Acknowledgement:"
 
     # Logos
