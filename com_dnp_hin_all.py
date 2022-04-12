@@ -244,15 +244,7 @@ def create_first_page(pdf):
     # Add framework as image
     pdf.image("./resources/framework.png", x=8, y=105, w=90)
     # Add framework caption
-    source_text = "Source:"
-    frameworkCaption_text = "Adapted from Black et al. (2008)"
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_xy(8, 170)
-    pdf.cell(7, 7, source_text, align='L')
-    pdf.set_xy(8+7+2, 170)
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(60, 7, frameworkCaption_text, align='L')
+    pdf.image("./resources/hindi/hn_1_04.png", x=8, y=172, w=40)
 
     # Factors for child undernutrition: Title
     pdf.image("./resources/hindi/hn_1_05.png", x=102, y=103, w=100)
