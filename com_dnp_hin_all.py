@@ -365,20 +365,7 @@ def create_first_page(pdf):
     pdf.cell(55, 10, birthsRegistered_text2, align='L')
 
     # source
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(8, 248)
-    pdf.cell(50, 3, "Source:", align='L')
-    source1_text = "1. IFPRI estimates - The headcount was calculated as the product of the undernutrition prevalence and the total eligible projected population for each district in 2019. Projected population for 2019 was estimated using Census 2011."
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.set_xy(8, 251)
-    pdf.cell(180, 3, source1_text[0:178], align='L')
-    pdf.set_xy(10.5, 254)
-    pdf.cell(180, 3, source1_text[179:], align='L')
-    source2_text = "2. NFHS-4 (2015-16) & NFHS-5 district & state factsheets (2019-20)."
-    pdf.set_xy(8, 257)
-    pdf.cell(200, 3, source2_text, align='L')
-
+    pdf.image("./resources/hindi/hn_1_source.png", x=8, y=248, w=190)
     # Horizontal line
     pdf.set_draw_color(109, 111, 113)
     pdf.set_line_width(0.75)
