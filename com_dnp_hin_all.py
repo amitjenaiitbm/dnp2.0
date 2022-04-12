@@ -222,7 +222,7 @@ def create_first_page(pdf):
     pdf.cell(10, 10, 'MARCH 2022', align='R')
 
     # About DNPs: Title
-    pdf.image("./resources/hindi/hn_1_02.png", x=7, y=54, w=100)
+    pdf.image("./resources/hindi/hn_1_02.png", x=7, y=54, w=110)
 
     # Add district map
     map_path = './data/maps/comparable_maps/{}.jpg'.format(district[4])
