@@ -206,11 +206,8 @@ def create_first_page(pdf):
     pdf.image("./resources/topBanner-1.png", x=0, y=0, w=WIDTH)
 
     # Add "District Nutrition Profile" text
-    pdf.set_font('Roboto-Bold', 'B', 20)
-    pdf.set_text_color(255, 255, 255)
-    banner_text = "district nutrition profile"
-    pdf.set_xy(100, 6)
-    pdf.cell(80, 20, banner_text.upper())
+    # pdf.set_xy(100, 6)
+    pdf.image("./resources/hindi/hn_1_01.png", x=100, y=6)
 
     # Add orange rectangle banner
     pdf.set_draw_color(231, 121, 37)
@@ -226,17 +223,18 @@ def create_first_page(pdf):
     pdf.cell(10, 10, 'MARCH 2022', align='R')
 
     # About DNPs: Title
-    pdf.set_font('Roboto-Bold', 'B', 13)
-    pdf.set_text_color(231, 121, 37)
-    pdf.set_xy(7, 54)
-    aboutDNP_text = "About District Nutrition Profiles:"
-    pdf.cell(100, 10, aboutDNP_text, align='L')
-    # About DNPs: Description text
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(7, 63)
-    DNPdesc_text = "District Nutrition Profiles (DNPs) are available for 707 districts in India. They present trends for key nutrition and health outcomes and their cross-sectoral determinants in a district. The DNPs are based on data from the National Family Health Survey (NFHS)-4 (2015-2016) and NFHS-5 (2019-2020). They are aimed primarily at district administrators, state functionaries, local leaders, and development actors working at the district-level."
-    pdf.multi_cell(115, 4.5, DNPdesc_text, align='J')
+    pdf.image("./resources/hindi/hn_1_02.png", x=7, y=54)
+    # pdf.set_font('Roboto-Bold', 'B', 13)
+    # pdf.set_text_color(231, 121, 37)
+    # pdf.set_xy(7, 54)
+    # aboutDNP_text = "About District Nutrition Profiles:"
+    # pdf.cell(100, 10, aboutDNP_text, align='L')
+    # # About DNPs: Description text
+    # pdf.set_font('Roboto-Regular', '', 10)
+    # pdf.set_text_color(0, 0, 0)
+    # pdf.set_xy(7, 63)
+    # DNPdesc_text = "District Nutrition Profiles (DNPs) are available for 707 districts in India. They present trends for key nutrition and health outcomes and their cross-sectoral determinants in a district. The DNPs are based on data from the National Family Health Survey (NFHS)-4 (2015-2016) and NFHS-5 (2019-2020). They are aimed primarily at district administrators, state functionaries, local leaders, and development actors working at the district-level."
+    # pdf.multi_cell(115, 4.5, DNPdesc_text, align='J')
 
     # Add district map
     map_path = './data/maps/comparable_maps/{}.jpg'.format(district[4])
@@ -1341,7 +1339,7 @@ def create_report(filename):
     create_fourth_page(pdf)
 
     #create a sub-folder
-    path = 'generated_dnp/comparable_dnp_english'
+    path = 'generated_dnp/comparable_dnp_hindi'
     dirName = path + '/{}'.format(district[1])
     if not os.path.exists(dirName):
         os.mkdir(dirName)
