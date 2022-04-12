@@ -438,12 +438,7 @@ def create_second_page(pdf):
     draw_orange_lollipop(pdf, ch_lollipop_gap, 115, district[30], state[16])
 
     # Note for NA description
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 126)
-    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
+    pdf.image("./resources/hindi/hn_NA.png", x=120, y=130, h=3.5)
 
     # Top Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -578,12 +573,7 @@ def create_second_page(pdf):
     draw_orange_lollipop(pdf, wo_lollipop_gap, 247, district[49], state[28])
 
     # Note for NA description
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 265)
-    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
+    pdf.image("./resources/hindi/hn_NA.png", x=120, y=269, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -722,12 +712,7 @@ def create_third_page(pdf):
     draw_orange_lollipop(pdf, im_lollipop_gap, 132, district[76], state[52])
 
     # Note for NA description
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 137)
-    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
+    pdf.image("./resources/hindi/hn_NA.png", x=120, y=140.5, h=3.5)
 
     # Top Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -831,12 +816,7 @@ def create_third_page(pdf):
     draw_orange_lollipop(pdf, im_lollipop_gap, 252, district[92], state[68])
 
     # Note for NA description
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 255.5)
-    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
+    pdf.image("./resources/hindi/hn_NA.png", x=120, y=259, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
@@ -1136,12 +1116,7 @@ def create_fourth_page(pdf):
     draw_dual_lollipop(pdf, co_lollipop_gap, 252, district[155], district[156])
 
     # Note for NA description
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 259)
-    pdf.cell(5, 10, NA_desc_text[0:5], align='L')
-    pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
+    pdf.image("./resources/hindi/hn_NA.png", x=120, y=262, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.set_draw_color(183, 179, 160)
