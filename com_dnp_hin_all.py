@@ -254,13 +254,14 @@ def create_first_page(pdf):
     pdf.set_fill_color(109, 111, 113)
     pdf.rect(x=7, y=183, w=WIDTH-14, h=10, style='F')
     # Add text into the grey bar
-    greyBar_text = "District demographic profile, 2019-20"
+    pdf.image("./resources/hindi/hn_1_06.png", x=10, y=184.5, h=6)
+    greyBar_year = "2019-20"
     pdf.set_font('Roboto-Bold', 'B', 13)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(10, 183)
-    pdf.cell(100, 10, greyBar_text, align='L')
+    pdf.set_xy(68, 183)
+    pdf.cell(7, 10, greyBar_year, align='L')
     pdf.set_font('Roboto-Bold', 'B', 12)
-    pdf.cell(90, 10, district[3], align='R')
+    pdf.cell(125, 10, district[3], align='R')
 
     # State nutrition profiles
     pdf.image("./resources/state_nut_prof.png", x=7, y=194, w=WIDTH-14)
