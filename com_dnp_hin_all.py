@@ -501,7 +501,7 @@ def create_second_page(pdf):
     draw_gridlines(pdf, wo_lollipop_gap, 165, 250)
 
     # Put the list of indicators
-    pdf.image("./resources/hindi/hn_2_07.png", x=6, y=167.5, h=80)
+    pdf.image("./resources/hindi/hn_2_07.png", x=18, y=165.5, h=82)
 
     # Put the lollipops
     # bmi_f_lowbmiout = "Underweight (BMI <18.5 kg/m²)"
