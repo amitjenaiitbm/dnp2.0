@@ -264,7 +264,7 @@ def create_first_page(pdf):
     pdf.cell(125, 10, district[3], align='R')
 
     # State nutrition profiles
-    pdf.image("./resources/state_nut_prof.png", x=7, y=194, w=WIDTH-14)
+    pdf.image("./resources/hindi/hn_1_007.png", x=7, y=194, w=WIDTH-14)
     # Sex ratio number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
@@ -274,7 +274,7 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Sex ratio text
-    pdf.image("./resources/hindi/hn_1_07.png", x=19.5, y=209, h=9)
+    # pdf.image("./resources/hindi/hn_1_07.png", x=19.5, y=209, h=9)
 
     # Reproductive age number
     pdf.set_font('Roboto-Bold', 'B', 27)
@@ -285,7 +285,8 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Reproductive age text
-    pdf.image("./resources/hindi/hn_1_08.png", x=87, y=209, h=9)
+    # pdf.image("./resources/hindi/hn_1_08.png", x=87, y=209, h=9)
+
     # Pregnant women number
     pdf.set_font('Roboto-Bold', 'B', 27)
     pdf.set_text_color(255, 255, 255)
@@ -295,7 +296,7 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Pregnant women text
-    pdf.image("./resources/hindi/hn_1_09.png", x=153, y=208.5, h=5)
+    # pdf.image("./resources/hindi/hn_1_09.png", x=153, y=208.5, h=5)
 
     # Live birth number
     pdf.set_font('Roboto-Bold', 'B', 27)
@@ -306,7 +307,7 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Live birth text
-    pdf.image("./resources/hindi/hn_1_10.png", x=20, y=233, h=5)
+    # pdf.image("./resources/hindi/hn_1_10.png", x=20, y=233, h=5)
 
     # Total children number
     pdf.set_font('Roboto-Bold', 'B', 27)
@@ -317,7 +318,7 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Total children text
-    pdf.image("./resources/hindi/hn_1_11.png", x=86, y=233, h=5)
+    # pdf.image("./resources/hindi/hn_1_11.png", x=86, y=233, h=5)
 
     # Births registered number
     pdf.set_font('Roboto-Bold', 'B', 27)
@@ -328,7 +329,7 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Births registered text
-    pdf.image("./resources/hindi/hn_1_12.png", x=153, y=233, h=5)
+    # pdf.image("./resources/hindi/hn_1_12.png", x=153, y=233, h=5)
 
     # source
     pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=247.5, h=3)
