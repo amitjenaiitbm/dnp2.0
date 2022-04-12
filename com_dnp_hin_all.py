@@ -356,7 +356,7 @@ def create_second_page(pdf):
     pdf.set_fill_color(41, 119, 115)
     pdf.rect(x=7, y=5, w=WIDTH-14, h=10, style='F')
     # Add text into the top bar
-    pdf.image("./resources/hindi/hn_2_01.png", x=10, y=7, h=7)
+    pdf.image("./resources/hindi/hn_2_01.png", x=10, y=6.5, h=7)
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(110, 5);
@@ -438,24 +438,10 @@ def create_second_page(pdf):
     draw_orange_lollipop(pdf, ch_lollipop_gap, 115, district[30], state[16])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=120, y=130, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=120, y=129, h=3.5)
 
     # Top Points of discussion grey bar
-    pdf.set_draw_color(183, 179, 160)
-    pdf.set_fill_color(183, 179, 160)
-    pdf.rect(x=7, y=134, w=WIDTH-14, h=15, style='F')
-    # Bottom Points of discussion: text
-    pdf.set_font('Roboto-Bold', 'B', 9)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(10, 135)
-    pdf.cell(50, 5, "Points of discussion:", align='L')
-    ch_pd1_text2 = "• What are the trends in undernutrition among children under five years of age (stunting, wasting, underweight, and anemia)?"
-    ch_pd2_text2 = "• What are the trends in overweight/obesity among children under five years of age in the district?"
-    pdf.set_font('Roboto-Regular', '', 9)
-    pdf.set_xy(12, 139)
-    pdf.cell(180, 5, ch_pd1_text2, align='L')
-    pdf.set_xy(12, 143)
-    pdf.cell(200, 5, ch_pd2_text2, align='L')
+    pdf.image("./resources/hindi/hn_2_05.png", x=7, y=133, h=15)
 
     #
 
@@ -464,11 +450,9 @@ def create_second_page(pdf):
     pdf.set_fill_color(41, 119, 115)
     pdf.rect(x=7, y=150, w=WIDTH-14, h=10, style='F')
     # Add text into the bottom bar
-    bottom_Bar2_text = "The state of nutrition outcomes among women (15-49 years)"
-    pdf.set_font('Roboto-Bold', 'B', 13)
+    pdf.image("./resources/hindi/hn_2_06.png", x=10, y=151, h=7)
     pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(10, 150)
-    pdf.cell(100, 10, bottom_Bar2_text, align='L')
+    pdf.set_xy(110, 150)
     pdf.set_font('Roboto-Bold', 'B', 12)
     pdf.cell(90, 10, district[3], align='R')
 
