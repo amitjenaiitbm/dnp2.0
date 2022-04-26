@@ -228,18 +228,21 @@ def create_first_page(pdf):
     map_path = './data/maps/comparable_maps/{}.jpg'.format(district[4])
     pdf.image(map_path, x=125, y=53, w=75, h=40)
     # map caption
-    figure1_text = "Figure 1:"
-    mapCaption_text1 = "Map highlights district {}".format(district[3])
-    mapCaption_text2 = "in the state/UT of {}".format(district[1])
+    # Line-1
+    pdf.image("./resources/hindi/hn_1_03_1.png", x=130, y=95, h=3.5)
+    citation_district = "{}".format(district[1])
     pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Bold', 'B', 7)
-    pdf.set_xy(130, 92)
-    pdf.cell(9, 7, figure1_text, align='L')
-    pdf.set_xy(130+9+1.5, 92)
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.cell(60, 7, mapCaption_text1, align='L')
-    pdf.set_xy(130, 95)
-    pdf.cell(70, 7, mapCaption_text2, align='L')
+    pdf.set_xy(155, 95.25)
+    pdf.cell(len(district[1]), 3, citation_district, align='L')
+    # Line-2
+    pdf.image("./resources/hindi/hn_1_03_2.png", x=130, y=98, h=3)
+    citation_state = "{}".format(district[3])
+    pdf.set_text_color(0, 0, 0)
+    pdf.set_font('Roboto-Regular', '', 7)
+    pdf.set_xy(139, 98.25)
+    pdf.cell(len(district[3]), 3, citation_state, align='L')
+    pdf.image("./resources/hindi/hn_1_03_3.png", x=140.5+1.25*len(district[3]), y=98.25, h=3)
 
     # Add framework as image
     pdf.image("./resources/framework.png", x=8, y=105, w=90)
@@ -335,12 +338,12 @@ def create_first_page(pdf):
     pdf.set_xy(169, 262.5)
     pdf.cell(len(district[3]), 3, citation_district, align='L')
     # citation line-2
-    citation_state = "{},".format(district[1])
+    citation_state = "{}".format(district[1])
     pdf.set_text_color(0, 0, 0)
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.set_xy(9.5, 265)
+    pdf.set_xy(9.5, 265.25)
     pdf.cell(len(district[1]), 3, citation_state, align='L')
-    pdf.image("./resources/hindi/hn_1_citation_2.png", x=4+1.5*len(district[1]), y=265.5, h=3)
+    pdf.image("./resources/hindi/hn_1_citation_2.png", x=11+1.25*len(district[1]), y=265.5, h=3)
 
     # Acknowledgement
     pdf.image("./resources/hindi/hn_1_ack.png", x=10, y=269, h=7)
@@ -717,7 +720,7 @@ def create_fourth_page(pdf):
     pdf.set_fill_color(91, 83, 134)
     pdf.rect(x=7, y=5, w=WIDTH-14, h=10, style='F')
     # Add text into the top bar
-    pdf.image("./resources/hindi/hn_4_01.png", x=10, y=6, h=6)
+    pdf.image("./resources/hindi/hn_4_01.png", x=10, y=6.5, h=6)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(110, 5)
     pdf.set_font('Roboto-Bold', 'B', 12)
@@ -806,81 +809,8 @@ def create_fourth_page(pdf):
     # Function call for grid line
     draw_gridlines(pdf, co_lollipop_gap, 23, 256)
 
-    # Put the top indicators
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_xy(co_indicator_x, co_indicator_y)
-    pdf.cell(co_cell_width, 10, fp_sat, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+1*vert_gap)
-    pdf.cell(co_cell_width, 10, iod_salt, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+2*vert_gap)
-    pdf.cell(co_cell_width, 10, mcp_rec, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+3*vert_gap)
-    pdf.cell(co_cell_width, 10, anc_firsttri, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+4*vert_gap)
-    pdf.cell(co_cell_width, 10, anc4, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+5*vert_gap)
-    pdf.cell(co_cell_width, 10, anc_weigh, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+6*vert_gap)
-    pdf.cell(co_cell_width, 10, counsel_birth_prepare, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+7*vert_gap)
-    pdf.cell(co_cell_width, 10, flw_breastcouns, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+8*vert_gap)
-    pdf.cell(co_cell_width, 10, protect_tetanus, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+9*vert_gap)
-    pdf.cell(co_cell_width, 10, IFA_rec, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+10*vert_gap)
-    pdf.cell(co_cell_width, 10, deworm_preg, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+11*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_thr_preg, align='R')
-
-    # Put the middle indicators
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_xy(co_indicator_x, co_indicator_y+12*vert_gap)
-    pdf.cell(co_cell_width, 10, inst_birth, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+13*vert_gap)
-    pdf.cell(co_cell_width, 10, jsy_rec1, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+14*vert_gap)
-    pdf.cell(co_cell_width, 10, ba_healthpro, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+15*vert_gap)
-    pdf.cell(co_cell_width, 10, mopostnat_2day_hp, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+16*vert_gap)
-    pdf.cell(co_cell_width, 10, chpostnat_2day_hp, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+17*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_thr_lact, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+18*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_hlthnut_lact, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+19*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_hlthcheck_lact, align='R')
-
-    # Put the top indicators
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Roboto-Regular', '', 10)
-    pdf.set_xy(co_indicator_x, co_indicator_y+20*vert_gap)
-    pdf.cell(co_cell_width, 10, full_immun1, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+21*vert_gap)
-    pdf.cell(co_cell_width, 10, chvitA_6m1, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+22*vert_gap)
-    pdf.cell(co_cell_width, 10, ch_ironsupp1, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+23*vert_gap)
-    pdf.cell(co_cell_width, 10, ch_deworm1, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+24*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_thr6_35_child, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+25*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_weight_child, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+26*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_weightcounse_child, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+27*vert_gap)
-    pdf.cell(co_cell_width, 10, ch_ors, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+28*vert_gap)
-    pdf.cell(co_cell_width, 10, ch_zinc, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+29*vert_gap)
-    pdf.cell(co_cell_width, 10, ari_treat, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+30*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_preschool_child, align='R')
-    pdf.set_xy(co_indicator_x, co_indicator_y+31*vert_gap)
-    pdf.cell(co_cell_width, 10, icds_hlthcheck_child, align='R')
+    #Put the indicators
+    pdf.image("./resources/hindi/hn_4_03.png", x=48, y=25, h=229)
 
     # Top section
     # fp_sat = "Demand for FP satisfied"
@@ -1027,5 +957,5 @@ with open("./data/csv/comparable_district_data.csv", 'r') as infile:
             for state in state_reader:
                 if district[2] == state[2]:
                     #Generated DNP file name
-                    filename="{}-{}.pdf".format(district[3], district[1])
+                    filename="{}-{}-HINDI.pdf".format(district[3], district[1])
                     create_report(filename)
