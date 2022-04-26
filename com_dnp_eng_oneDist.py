@@ -1,12 +1,15 @@
 import csv
 import os
+#@AC import math
+import math
 
 #Python libraries
 from fpdf import FPDF
 
 WIDTH = 210
 HEIGHT = 297
-NA_desc_text = "Note: NA refers to data are unavailable for a given round of NFHS data."
+#@AC change here
+NA_desc_text = "Note: NA refers to data unavailable for a given round of NFHS/Census."
 
 def round_str(value):
     if value != '':
@@ -61,11 +64,23 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
         if district_2019 == '' or (float(district_2016) <= float(district_2019)):
             percent_text_pos = x2 - 5
             pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="R")
+            #@AC function for decimals
+            whole_value = math.floor(float(district_2016))
+            dec_value = float(district_2016) - whole_value
+            if dec_value == 0.5 :
+                pdf.cell(4, 3, str(math.ceil(float(district_2016)))+"%", align="R")
+            else:
+                pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="R")
         elif float(district_2016) > float(district_2019):
             percent_text_pos = x2 + 2
             pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
+            #@AC function for decimals
+            whole_value = math.floor(float(district_2016))
+            dec_value = float(district_2016) - whole_value
+            if dec_value == 0.5 :
+                pdf.cell(4, 3, str(math.ceil(float(district_2016)))+"%", align="L")
+            else:
+                pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
 
     if district_2019 != '':
         x2 = x1+(0.5*float(district_2019))
@@ -77,11 +92,23 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
         if district_2016 == '' or (float(district_2019) >= float(district_2016)):
             percent_text_pos = x2 + 2
             pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
+            #@AC function for decimals
+            whole_value = math.floor(float(district_2019))
+            dec_value = float(district_2019) - whole_value
+            if dec_value == 0.5 :
+                pdf.cell(4, 3, str(math.ceil(float(district_2019)))+"%", align="L")
+            else:
+                pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
         elif float(district_2019) < float(district_2016):
             percent_text_pos = x2 - 5
             pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="R")
+            #@AC function for decimals
+            whole_value = math.floor(float(district_2019))
+            dec_value = float(district_2019) - whole_value
+            if dec_value == 0.5 :
+                pdf.cell(4, 3, str(math.ceil(float(district_2019)))+"%", align="R")
+            else:
+                pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="R")
 
     # Draw the connecting arrow
     if (district_2016 != '') and (district_2019 != ''):
@@ -97,8 +124,11 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
             pdf.line(q, y1, q-k, y1-k)
             pdf.line(q, y1, q-k, y1+k)
         elif float(district_2016) > float(district_2019):
-            pdf.line(p, y1, p-k, y1-k)
-            pdf.line(p, y1, p-k, y1+k)
+            #@AC change here for arrow direction
+            #pdf.line(p, y1, p-k, y1-k)
+            #pdf.line(p, y1, p-k, y1+k)
+            pdf.line(q, y1, q+k, y1-k)
+            pdf.line(q, y1, q+k, y1+k)
 
     # Print NA (2016) and NA (2019) if both are NOT available
     if (district_2016 == '') and (district_2019 == ''):
@@ -134,7 +164,13 @@ def draw_green_lollipop(pdf, x1, y1, district_2016, state_2016):
         else:
             percent_text_pos = x2 + 3
         pdf.set_xy(percent_text_pos, y1-1.5)
-        pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
+        #@AC function for decimals
+        whole_value = math.floor(float(district_2016))
+        dec_value = float(district_2016)  - whole_value
+        if dec_value == 0.5 :
+            pdf.cell(4, 3, str(math.ceil(float(district_2016)))+"%", align="L")
+        else:
+            pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
     else:
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
@@ -164,7 +200,13 @@ def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
         else:
             percent_text_pos = x2 + 3
         pdf.set_xy(percent_text_pos, y1-1.5)
-        pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
+        #@AC function for decimals
+        whole_value = math.floor(float(district_2019))
+        dec_value = float(district_2019) - whole_value
+        if dec_value == 0.5 :
+            pdf.cell(4, 3, str(math.ceil(float(district_2019)))+"%", align="L")
+        else:
+            pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
     else:
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
@@ -285,8 +327,8 @@ def create_first_page(pdf):
     pdf.set_draw_color(109, 111, 113)
     pdf.set_fill_color(109, 111, 113)
     pdf.rect(x=7, y=183, w=WIDTH-14, h=10, style='F')
-    # Add text into the grey bar
-    greyBar_text = "District demographic profile, 2019-20"
+    # Add text into the grey bar - @AC changing year
+    greyBar_text = "District demographic profile, 2019"
     pdf.set_font('Roboto-Bold', 'B', 13)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(10, 183)
@@ -322,7 +364,8 @@ def create_first_page(pdf):
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
     # Reproductive age text
-    reproductive_text1 = "Number of women in"
+    #@AC change in to of
+    reproductive_text1 = "Number of women of"
     reproductive_text2 = "reproductive age (15–49 yrs)"
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_text_color(255, 255, 255)
@@ -338,9 +381,9 @@ def create_first_page(pdf):
         pdf.cell(40, 20, str("{:,}".format(round(float(district[7])))), align='L')
     else:
         pdf.cell(40, 20, "NA", 0, 0, 'L')
-    # Pregnant women text
-    pregnantWomen_text1 = "Number of"
-    pregnantWomen_text2 = "pregnant women"
+    # Pregnant women text - @AC change label
+    pregnantWomen_text1 = "Total number of pregnant"
+    pregnantWomen_text2 = "women registered for ANC"
     pdf.set_font('Roboto-Bold', 'B', 10)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(152, 206)
@@ -401,13 +444,18 @@ def create_first_page(pdf):
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(8, 248)
     pdf.cell(50, 3, "Source:", align='L')
-    source1_text = "1. IFPRI estimates - The headcount was calculated as the product of the undernutrition prevalence and the total eligible projected population for each district in 2019. Projected population for 2019 was estimated using Census 2011."
+    #@AC change footnote
+    source1_text = "IFPRI estimates - Headcount = Prevalence x Eligible projected population for each district in 2019. Prevalence estimates: NFHS-4 (2015-16) and NFHS-5 (2019-20) state/district factsheets and report. Projected population for 2019 (children <5yrs and women 15-49yrs) was estimated using Census 2011."
     pdf.set_font('Roboto-Regular', '', 7)
     pdf.set_xy(8, 251)
-    pdf.cell(180, 3, source1_text[0:178], align='L')
-    pdf.set_xy(10.5, 254)
-    pdf.cell(180, 3, source1_text[179:], align='L')
-    source2_text = "2. NFHS-4 (2015-16) & NFHS-5 district & state factsheets (2019-20)."
+    #@AC changing 178 to 175
+    pdf.cell(180, 3, source1_text[0:175], align='L')
+    #@AC changing x axis to 8
+    pdf.set_xy(8, 254)
+    #@AC changing this to 175
+    pdf.cell(180, 3, source1_text[175:], align='L')
+    #@AC change footnote
+    source2_text = "Data on number of pregnant women, live births, and institutional deliveries are from HMIS. NA: unavailable/implausible data"
     pdf.set_xy(8, 257)
     pdf.cell(200, 3, source2_text, align='L')
 
@@ -467,7 +515,8 @@ def create_second_page(pdf):
     # Background box image
     pdf.image("./resources/burden_top2.png", x=WIDTH-85, y=60, w=77)
     # Burden text: Title
-    burden_title_top = "Burden on nutrition outcomes (2020)"
+    #@AC change here
+    burden_title_top = "Burden of nutrition outcomes (2020)"
     pdf.set_font('Roboto-Regular', '', 10)
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(WIDTH-86, 51)
@@ -487,7 +536,6 @@ def create_second_page(pdf):
         pdf.cell(40, 10, round_str(district[13]), align='L')
     else:
         pdf.cell(40, 10, "NA", align='L')
-    pdf.cell(40, 10, "NA", align='L')
     pdf.set_xy(WIDTH-84, 69.5)
     pdf.cell(40, 10, "Stunted", align='L')
     pdf.cell(40, 10, round_str(district[16]), align='L')
@@ -573,9 +621,11 @@ def create_second_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 126)
+    #@AC changing x corrdinate to 124
+    pdf.set_xy(124, 126)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
+    #@AC changing x coordinate to 74.5
     pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Top Points of discussion grey bar
@@ -616,8 +666,9 @@ def create_second_page(pdf):
     # Put the burden details
     # Background box image
     pdf.image("./resources/burden_bottom2.png", x=WIDTH-85, y=198, w=77)
+    #@AC change to burden of
     # Burden text: Title
-    burden_title_bottom = "Burden on nutrition outcomes (2020)"
+    burden_title_bottom = "Burden of nutrition outcomes (2020)"
     pdf.set_font('Roboto-Regular', '', 10)
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(WIDTH-86, 189)
@@ -713,9 +764,11 @@ def create_second_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 265)
+    #@AC changing x corrdinate to 124
+    pdf.set_xy(124, 265)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
+    #@AC changing x coordinate to 74.5
     pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
@@ -857,9 +910,11 @@ def create_third_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 137)
+    #@AC changing x corrdinate to 124
+    pdf.set_xy(124, 137)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
+    #@AC changing x coordinate to 74.5
     pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Top Points of discussion grey bar
@@ -871,7 +926,8 @@ def create_third_page(pdf):
     pdf.set_text_color(0, 0, 0)
     pdf.set_xy(10, 144)
     pdf.cell(50, 5, "Points of discussion:", align='L')
-    im_pd1_text3 = "• What are the trends in infant and young child feeding (timely initiation of breastfeeding, exclusive breastfeeding, timely initiation of complementary feeding, and adequate diet)? What can be done to improve infant and young child feeding?"
+    #@AC timely to early space before com
+    im_pd1_text3 = "• What are the trends in infant and young child feeding (early initiation of breastfeeding, exclusive breastfeeding, timely initiation of  complementary feeding, and adequate diet)? What can be done to improve infant and young child feeding?"
     im_pd2_text3 = "• What are the trends in IFA consumption among pregnant women in the district? How can the consumption be improved?"
     im_pd3_text3 = "• What additional data are needed to understand diets and/or other determinants?"
     pdf.set_font('Roboto-Regular', '', 9)
@@ -904,7 +960,8 @@ def create_third_page(pdf):
     school10yr_women = "Women with ≥10 years of education"
     wo2024_mar18 = "Women 20-24 years married before the age of 18"
     wom_pregmothers_1519 = "Women 15-19 years with child or pregnant"
-    imp_latrine = "HHs with improved sanitation facility"
+    #@AC correcting label change with to using improved
+    imp_latrine = "HHs using improved sanitation facility"
     imp_drinkw = "HHs with improved drinking water source"
     safe_disp = "Safe disposal of feces"
     bpl_card = "HHs with below poverty line (BPL) card"
@@ -966,9 +1023,11 @@ def create_third_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 255.5)
+    #@AC changing x corrdinate to 124
+    pdf.set_xy(124, 255.5)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
+    #@AC changing x coordinate to 74.5
     pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
@@ -1048,9 +1107,11 @@ def create_fourth_page(pdf):
     # Top section - indicator labels
     fp_sat = "Demand for FP satisfied"
     iod_salt = "Iodized salt"
-    mcp_rec = "Pregnancy registered (MPC card)"
+    # MCP -@AC
+    mcp_rec = "Pregnancy registered (MCP card)"
     anc_firsttri = "ANC first trimester"
-    anc4 = "> 4 ANC visits"
+    #@AC add = here
+    anc4 = "≥ 4 ANC visits"
     anc_weigh = "Weighing"
     counsel_birth_prepare = "Birth preparedness counselling"
     flw_breastcouns = "Breastfeeding counselling"
@@ -1221,8 +1282,8 @@ def create_fourth_page(pdf):
     draw_dual_lollipop(pdf, co_lollipop_gap, 92, district[111], district[112])
     # deworm_preg = "Deworming"
     draw_dual_lollipop(pdf, co_lollipop_gap, 99.5, district[113], district[114])
-    # icds_thr_preg = "Food supplementation"
-    draw_dual_lollipop(pdf, co_lollipop_gap, 107, district[101], district[101])
+    # icds_thr_preg = "Food supplementation" - @AC correct to 115 and 116
+    draw_dual_lollipop(pdf, co_lollipop_gap, 107, district[115], district[116])
 
     # Middle section
     # inst_birth = "Institutional birth"
@@ -1271,9 +1332,11 @@ def create_fourth_page(pdf):
     # Note for NA description
     pdf.set_font('Roboto-Bold', 'B', 7)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(123, 259)
+    #@AC changing x corrdinate to 124
+    pdf.set_xy(124, 259)
     pdf.cell(5, 10, NA_desc_text[0:5], align='L')
     pdf.set_font('Roboto-Regular', '', 7)
+    #@AC changing x coordinate to 74.5
     pdf.cell(74.5, 10, NA_desc_text[5:], align='R')
 
     # Bottom Points of discussion grey bar
