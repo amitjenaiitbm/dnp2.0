@@ -1,12 +1,13 @@
 import csv
 import os
+#@AC import math
+import math
 
 #Python libraries
 from fpdf import FPDF
 
 WIDTH = 210
 HEIGHT = 297
-NA_desc_text = "Note: NA refers to data are unavailable for a given round of NFHS data."
 
 def round_str(value):
     if value != '':
@@ -61,11 +62,23 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
         if district_2019 == '' or (float(district_2016) <= float(district_2019)):
             percent_text_pos = x2 - 5
             pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="R")
+            #@AC function for decimals
+            whole_value = math.floor(float(district_2016))
+            dec_value = float(district_2016) - whole_value
+            if dec_value == 0.5 :
+                pdf.cell(4, 3, str(math.ceil(float(district_2016)))+"%", align="R")
+            else:
+                pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="R")
         elif float(district_2016) > float(district_2019):
             percent_text_pos = x2 + 2
             pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
+            #@AC function for decimals
+            whole_value = math.floor(float(district_2016))
+            dec_value = float(district_2016) - whole_value
+            if dec_value == 0.5 :
+                pdf.cell(4, 3, str(math.ceil(float(district_2016)))+"%", align="L")
+            else:
+                pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
 
     if district_2019 != '':
         x2 = x1+(0.5*float(district_2019))
@@ -77,11 +90,23 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
         if district_2016 == '' or (float(district_2019) >= float(district_2016)):
             percent_text_pos = x2 + 2
             pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
+            #@AC function for decimals
+            whole_value = math.floor(float(district_2019))
+            dec_value = float(district_2019) - whole_value
+            if dec_value == 0.5 :
+                pdf.cell(4, 3, str(math.ceil(float(district_2019)))+"%", align="L")
+            else:
+                pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
         elif float(district_2019) < float(district_2016):
             percent_text_pos = x2 - 5
             pdf.set_xy(percent_text_pos, y1-1.5)
-            pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="R")
+            #@AC function for decimals
+            whole_value = math.floor(float(district_2019))
+            dec_value = float(district_2019) - whole_value
+            if dec_value == 0.5 :
+                pdf.cell(4, 3, str(math.ceil(float(district_2019)))+"%", align="R")
+            else:
+                pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="R")
 
     # Draw the connecting arrow
     if (district_2016 != '') and (district_2019 != ''):
@@ -97,8 +122,11 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
             pdf.line(q, y1, q-k, y1-k)
             pdf.line(q, y1, q-k, y1+k)
         elif float(district_2016) > float(district_2019):
-            pdf.line(p, y1, p-k, y1-k)
-            pdf.line(p, y1, p-k, y1+k)
+            #@AC change here for arrow direction
+            #pdf.line(p, y1, p-k, y1-k)
+            #pdf.line(p, y1, p-k, y1+k)
+            pdf.line(q, y1, q+k, y1-k)
+            pdf.line(q, y1, q+k, y1+k)
 
     # Print NA (2016) and NA (2019) if both are NOT available
     if (district_2016 == '') and (district_2019 == ''):
@@ -134,7 +162,13 @@ def draw_green_lollipop(pdf, x1, y1, district_2016, state_2016):
         else:
             percent_text_pos = x2 + 3
         pdf.set_xy(percent_text_pos, y1-1.5)
-        pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
+        #@AC function for decimals
+        whole_value = math.floor(float(district_2016))
+        dec_value = float(district_2016)  - whole_value
+        if dec_value == 0.5 :
+            pdf.cell(4, 3, str(math.ceil(float(district_2016)))+"%", align="L")
+        else:
+            pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
     else:
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
@@ -164,7 +198,13 @@ def draw_orange_lollipop(pdf,x1, y1, district_2019, state_2019):
         else:
             percent_text_pos = x2 + 3
         pdf.set_xy(percent_text_pos, y1-1.5)
-        pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
+        #@AC function for decimals
+        whole_value = math.floor(float(district_2019))
+        dec_value = float(district_2019) - whole_value
+        if dec_value == 0.5 :
+            pdf.cell(4, 3, str(math.ceil(float(district_2019)))+"%", align="L")
+        else:
+            pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
     else:
         # Print NA
         pdf.set_font('Roboto-Regular', '', 8)
@@ -258,7 +298,7 @@ def create_first_page(pdf):
     pdf.rect(x=7, y=183, w=WIDTH-14, h=10, style='F')
     # Add text into the grey bar
     pdf.image("./resources/hindi/hn_1_06.png", x=10, y=184.5, h=6)
-    greyBar_year = "2019-20"
+    greyBar_year = "2019"
     pdf.set_font('Roboto-Bold', 'B', 13)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(68, 183)

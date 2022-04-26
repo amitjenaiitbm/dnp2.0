@@ -69,7 +69,7 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
             dec_value = float(district_2016) - whole_value
             if dec_value == 0.5 :
                 pdf.cell(4, 3, str(math.ceil(float(district_2016)))+"%", align="R")
-            else: 
+            else:
                 pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="R")
         elif float(district_2016) > float(district_2019):
             percent_text_pos = x2 + 2
@@ -79,7 +79,7 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
             dec_value = float(district_2016) - whole_value
             if dec_value == 0.5 :
                 pdf.cell(4, 3, str(math.ceil(float(district_2016)))+"%", align="L")
-            else: 
+            else:
                 pdf.cell(4, 3, str(round(float(district_2016)))+"%", align="L")
 
     if district_2019 != '':
@@ -97,7 +97,7 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
             dec_value = float(district_2019) - whole_value
             if dec_value == 0.5 :
                 pdf.cell(4, 3, str(math.ceil(float(district_2019)))+"%", align="L")
-            else: 
+            else:
                 pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="L")
         elif float(district_2019) < float(district_2016):
             percent_text_pos = x2 - 5
@@ -107,7 +107,7 @@ def draw_dual_lollipop(pdf, x1, y1, district_2016, district_2019):
             dec_value = float(district_2019) - whole_value
             if dec_value == 0.5 :
                 pdf.cell(4, 3, str(math.ceil(float(district_2019)))+"%", align="R")
-            else: 
+            else:
                 pdf.cell(4, 3, str(round(float(district_2019)))+"%", align="R")
 
     # Draw the connecting arrow
