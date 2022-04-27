@@ -285,7 +285,7 @@ def create_first_page(pdf):
     pdf.image("./resources/hindi/hn_1_03_3.png", x=140.5+1.25*len(district[3]), y=98.25, h=3)
 
     # Add framework as image
-    pdf.image("./resources/framework.png", x=8, y=105, w=90)
+    pdf.image("./resources/hindi/framework.png", x=8, y=105, w=90)
     # Add framework caption
     pdf.image("./resources/hindi/hn_1_04.png", x=8, y=172, w=40)
 
@@ -431,9 +431,8 @@ def create_second_page(pdf):
     pdf.cell(40, 10, round_str(district[28]), align='L')
     pdf.set_xy(165, 104.5)
     pdf.cell(40, 10, round_str(district[31]), align='L')
-    pdf.set_xy(130, 110)
+    pdf.set_xy(165, 110)
     pdf.set_font('Roboto-Bold', 'B', 8)
-    pdf.cell(40, 10, "Total children", align='L')
     pdf.cell(40, 10, round_str(district[32]), align='L')
 
     # Top section - indicator labels
@@ -481,7 +480,7 @@ def create_second_page(pdf):
     draw_orange_lollipop(pdf, ch_lollipop_gap, 115, district[30], state[16])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=120, y=129, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=105, y=129, h=3.5)
 
     # Top Points of discussion grey bar
     pdf.image("./resources/hindi/hn_2_05.png", x=7, y=133, h=15)
@@ -504,12 +503,12 @@ def create_second_page(pdf):
 
     # Put the burden details
     # Background box image
-    pdf.image("./resources/hindi/hn_2_08.png", x=WIDTH-85, y=191, w=77)
+    pdf.image("./resources/hindi/hn_2_08.png", x=WIDTH-85, y=192.5, w=77)
 
     # Burden text: Table rows
     pdf.set_font('Roboto-Regular', '', 8)
     pdf.set_text_color(0, 0, 0)
-    pdf.set_xy(166, 201)
+    pdf.set_xy(166, 201.5)
     pdf.cell(40, 10, round_str(district[35]), align='L')
     pdf.set_xy(166, 207)
     pdf.cell(40, 10, round_str(district[38]), align='L')
@@ -521,9 +520,10 @@ def create_second_page(pdf):
     pdf.cell(40, 10, round_str(district[47]), align='L')
     pdf.set_xy(166, 230)
     pdf.cell(40, 10, round_str(district[50]), align='L')
+    pdf.set_font('Roboto-Bold', 'B', 8)
     pdf.set_xy(166, 236)
     pdf.cell(40, 10, round_str(district[51]), align='L')
-    pdf.set_xy(166, 242)
+    pdf.set_xy(166, 241.5)
     pdf.cell(40, 10, round_str(district[52]), align='L')
 
     # Bottom section - indicator labels
@@ -567,7 +567,7 @@ def create_second_page(pdf):
     draw_orange_lollipop(pdf, wo_lollipop_gap, 247, district[49], state[28])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=120, y=269, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=105, y=269, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.image("./resources/hindi/hn_2_09.png", x=7, y=273, h=15)
@@ -626,7 +626,7 @@ def create_third_page(pdf):
     draw_gridlines(pdf, im_lollipop_gap, 17, 135)
 
     # Put the indicators
-    pdf.image("./resources/hindi/hn_3_02.png", x=22, y=18, h=115)
+    pdf.image("./resources/hindi/hn_3_02.png", x=23, y=18, h=115)
 
     # Put the lollipops
     # take100_IFA_preg = "Consumed IFA 100+ days (pregnant women)"
@@ -667,7 +667,7 @@ def create_third_page(pdf):
     draw_orange_lollipop(pdf, im_lollipop_gap, 132, district[76], state[52])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=120, y=140.5, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=105, y=140.5, h=3.5)
 
     # Top Points of discussion grey bar
     pdf.image("./resources/hindi/hn_3_03.png", x=7, y=144, h=21)
@@ -705,7 +705,7 @@ def create_third_page(pdf):
     draw_gridlines(pdf, un_lollipop_gap, 177, 254)
 
     # Put the indicators
-    pdf.image("./resources/hindi/hn_3_05.png", x=12, y=177, h=75)
+    pdf.image("./resources/hindi/hn_3_05.png", x=9, y=177, h=75)
 
     # Put the lollipops
     # school10yr_women = "Women with ≥10 years of education"
@@ -734,7 +734,7 @@ def create_third_page(pdf):
     draw_orange_lollipop(pdf, im_lollipop_gap, 252, district[92], state[68])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=120, y=259, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=105, y=259, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.image("./resources/hindi/hn_3_06.png", x=7, y=262.5, h=26)
@@ -850,7 +850,7 @@ def create_fourth_page(pdf):
     draw_gridlines(pdf, co_lollipop_gap, 23, 256)
 
     #Put the indicators
-    pdf.image("./resources/hindi/hn_4_03.png", x=48, y=25, h=229)
+    pdf.image("./resources/hindi/hn_4_03.png", x=45, y=25, h=229)
 
     # Top section
     # fp_sat = "Demand for FP satisfied"
@@ -923,7 +923,7 @@ def create_fourth_page(pdf):
     draw_dual_lollipop(pdf, co_lollipop_gap, 252, district[155], district[156])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=120, y=262, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=105, y=262, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.image("./resources/hindi/hn_4_04.png", x=7, y=266, h=22)
