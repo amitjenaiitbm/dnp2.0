@@ -381,12 +381,12 @@ def create_first_page(pdf):
     citation_state = "{}".format(district[1])
     pdf.set_text_color(0, 0, 0)
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.set_xy(9.5, 265.25)
+    pdf.set_xy(9.5, 265.5)
     pdf.cell(len(district[1]), 3, citation_state, align='L')
-    pdf.image("./resources/hindi/hn_1_citation_2.png", x=13+1.25*len(district[1]), y=265.5, h=3)
+    pdf.image("./resources/hindi/hn_1_citation_2.png", x=13+1.25*len(district[1]), y=265.5, h=3.5)
 
     # Acknowledgement
-    pdf.image("./resources/hindi/hn_1_ack.png", x=10, y=269, h=7)
+    pdf.image("./resources/hindi/hn_1_ack.png", x=10, y=269, h=7.25)
     acknowledgement_text = "Acknowledgement:"
 
     # Logos
@@ -480,7 +480,7 @@ def create_second_page(pdf):
     draw_orange_lollipop(pdf, ch_lollipop_gap, 115, district[30], state[16])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=105, y=129, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=93, y=129, h=3.5)
 
     # Top Points of discussion grey bar
     pdf.image("./resources/hindi/hn_2_05.png", x=7, y=133, h=15)
@@ -503,7 +503,7 @@ def create_second_page(pdf):
 
     # Put the burden details
     # Background box image
-    pdf.image("./resources/hindi/hn_2_08.png", x=WIDTH-85, y=192.5, w=77)
+    pdf.image("./resources/hindi/hn_2_08.png", x=WIDTH-85, y=192.75, w=77)
 
     # Burden text: Table rows
     pdf.set_font('Roboto-Regular', '', 8)
@@ -567,7 +567,7 @@ def create_second_page(pdf):
     draw_orange_lollipop(pdf, wo_lollipop_gap, 247, district[49], state[28])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=105, y=269, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=93, y=269, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.image("./resources/hindi/hn_2_09.png", x=7, y=273, h=15)
@@ -667,7 +667,7 @@ def create_third_page(pdf):
     draw_orange_lollipop(pdf, im_lollipop_gap, 132, district[76], state[52])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=105, y=140.5, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=93, y=140.5, h=3.5)
 
     # Top Points of discussion grey bar
     pdf.image("./resources/hindi/hn_3_03.png", x=7, y=144, h=21)
@@ -705,7 +705,7 @@ def create_third_page(pdf):
     draw_gridlines(pdf, un_lollipop_gap, 177, 254)
 
     # Put the indicators
-    pdf.image("./resources/hindi/hn_3_05.png", x=9, y=177, h=75)
+    pdf.image("./resources/hindi/hn_3_05.png", x=9, y=177.25, h=75)
 
     # Put the lollipops
     # school10yr_women = "Women with ≥10 years of education"
@@ -734,7 +734,7 @@ def create_third_page(pdf):
     draw_orange_lollipop(pdf, im_lollipop_gap, 252, district[92], state[68])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=105, y=259, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=93, y=259, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.image("./resources/hindi/hn_3_06.png", x=7, y=262.5, h=26)
@@ -850,7 +850,7 @@ def create_fourth_page(pdf):
     draw_gridlines(pdf, co_lollipop_gap, 23, 256)
 
     #Put the indicators
-    pdf.image("./resources/hindi/hn_4_03.png", x=45, y=25, h=229)
+    pdf.image("./resources/hindi/hn_4_03.png", x=45, y=25, h=229.25)
 
     # Top section
     # fp_sat = "Demand for FP satisfied"
@@ -923,7 +923,7 @@ def create_fourth_page(pdf):
     draw_dual_lollipop(pdf, co_lollipop_gap, 252, district[155], district[156])
 
     # Note for NA description
-    pdf.image("./resources/hindi/hn_NA.png", x=105, y=262, h=3.5)
+    pdf.image("./resources/hindi/hn_NA.png", x=93, y=262, h=3.5)
 
     # Bottom Points of discussion grey bar
     pdf.image("./resources/hindi/hn_4_04.png", x=7, y=266, h=22)
