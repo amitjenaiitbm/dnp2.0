@@ -383,7 +383,11 @@ def create_first_page(pdf):
     pdf.set_font('Roboto-Regular', '', 7)
     pdf.set_xy(9.5, 265.5)
     pdf.cell(len(district[1]), 3, citation_state, align='L')
-    pdf.image("./resources/hindi/hn_1_citation_2.png", x=13+1.25*len(district[1]), y=265.5, h=3.5)
+    offset = 11
+    # The State name (in English) is NOT a monospaced font. Hence, for each state name, it takes different horizontal size.
+    # So, for each state, the above offset value has to be adjusted as given below.
+    # 
+    pdf.image("./resources/hindi/hn_1_citation_2.png", x=offset+1.25*len(district[1]), y=265.5, h=3.5)
 
     # Acknowledgement
     pdf.image("./resources/hindi/hn_1_ack.png", x=10, y=269, h=7.25)
@@ -850,7 +854,7 @@ def create_fourth_page(pdf):
     draw_gridlines(pdf, co_lollipop_gap, 23, 256)
 
     #Put the indicators
-    pdf.image("./resources/hindi/hn_4_03.png", x=45, y=25, h=229.25)
+    pdf.image("./resources/hindi/hn_4_03.png", x=45, y=25, h=228.5)
 
     # Top section
     # fp_sat = "Demand for FP satisfied"
