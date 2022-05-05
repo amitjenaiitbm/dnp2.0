@@ -381,12 +381,25 @@ def create_first_page(pdf):
     citation_state = "{}".format(district[1])
     pdf.set_text_color(0, 0, 0)
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.set_xy(9.5, 265.5)
+    pdf.set_xy(9.5, 265.75)
     pdf.cell(len(district[1]), 3, citation_state, align='L')
-    offset = 11
     # The State name (in English) is NOT a monospaced font. Hence, for each state name, it takes different horizontal size.
-    # So, for each state, the above offset value has to be adjusted as given below.
-    # 
+    # So, for each state, the offset value has to be adjusted as given below.
+    state_code = int(district[2])
+    if state_code == 42:
+        offset = 9
+    if state_code == 9:
+        offset = 9.5
+    elif state_code == 35 or state_code == 12 or state_code == 10 or state_code == 22 or state_code == 24 or state_code == 32 or state_code == 16:
+        offset = 10
+    elif state_code == 8 or state_code == 11 or state_code == 5 or state_code == 29:
+        offset = 10.5
+    elif state_code == 18 or state_code == 30 or state_code == 1 or state_code == 31 or state_code == 23 or state_code == 17 or state_code == 15:
+        offset = 12
+    else:
+        offset = 11
+
+    # print("State - " + district[2] + " & Offset - " + str(offset)) # Error check code
     pdf.image("./resources/hindi/hn_1_citation_2.png", x=offset+1.25*len(district[1]), y=265.5, h=3.5)
 
     # Acknowledgement
