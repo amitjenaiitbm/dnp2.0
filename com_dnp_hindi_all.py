@@ -262,27 +262,27 @@ def create_first_page(pdf):
     pdf.cell(10, 10, 'MARCH 2022', align='R')
 
     # About DNPs: Title
-    pdf.image("./resources/hindi/hn_1_02.png", x=7, y=54, w=110)
+    pdf.image("./resources/hindi/hn_1_02.png", x=7, y=54, w=102)
 
     # Add district map
     map_path = './data/maps/comparable_maps/{}.jpg'.format(district[4])
-    pdf.image(map_path, x=125, y=53, w=75, h=40)
+    pdf.image(map_path, x=120, y=51, w=75, h=40)
     # map caption
     # Line-1
-    pdf.image("./resources/hindi/hn_1_03_1.png", x=130, y=95, h=3.5)
+    pdf.image("./resources/hindi/hn_1_03_1.png", x=130, y=91, h=3.5)
     citation_district = "{}".format(district[1])
     pdf.set_text_color(0, 0, 0)
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.set_xy(155, 95.25)
+    pdf.set_xy(155, 91.25)
     pdf.cell(len(district[1]), 3, citation_district, align='L')
     # Line-2
-    pdf.image("./resources/hindi/hn_1_03_2.png", x=130, y=98, h=3)
+    pdf.image("./resources/hindi/hn_1_03_2.png", x=130, y=94, h=3)
     citation_state = "{}".format(district[3])
     pdf.set_text_color(0, 0, 0)
     pdf.set_font('Roboto-Regular', '', 7)
-    pdf.set_xy(139, 98.25)
+    pdf.set_xy(139, 94.25)
     pdf.cell(len(district[3]), 3, citation_state, align='L')
-    pdf.image("./resources/hindi/hn_1_03_3.png", x=140.5+1.25*len(district[3]), y=98.25, h=3)
+    pdf.image("./resources/hindi/hn_1_03_3.png", x=140.5+1.25*len(district[3]), y=94.25, h=3)
 
     # Add framework as image
     pdf.image("./resources/hindi/framework.png", x=8, y=105, w=90)
@@ -290,7 +290,7 @@ def create_first_page(pdf):
     pdf.image("./resources/hindi/hn_1_04.png", x=8, y=172, w=40)
 
     # Factors for child undernutrition: Title
-    pdf.image("./resources/hindi/hn_1_05.png", x=102, y=103, w=100)
+    pdf.image("./resources/hindi/hn_1_05.png", x=102, y=100, w=100)
 
     # Add grey rectangle
     pdf.set_draw_color(109, 111, 113)
