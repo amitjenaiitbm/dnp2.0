@@ -233,8 +233,8 @@ def create_first_page(pdf):
         pdf.cell(40, 20, "NA", 0, 0, 'L')
 
     # source
-    pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=247.5, h=3)
-    pdf.image("./resources/hindi/hn_1_source_2.png", x=10, y=250.5, h=10)
+    # pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=247.5, h=3)
+    pdf.image("./resources/hindi/hn_1_source_2.png", x=10.5, y=247.5, h=13.5)
     # Horizontal line
     pdf.set_draw_color(109, 111, 113)
     pdf.set_line_width(0.75)
@@ -258,7 +258,9 @@ def create_first_page(pdf):
     state_code = int(district[2])
     if state_code == 42:
         offset = 9
-    elif state_code == 9 or state_code == 35 or state_code == 12 or state_code == 10 or state_code == 22 or state_code == 24 or state_code == 32 or state_code == 16:
+    if state_code == 9:
+        offset = 9.5
+    elif state_code == 35 or state_code == 12 or state_code == 10 or state_code == 22 or state_code == 24 or state_code == 32 or state_code == 16:
         offset = 10
     elif state_code == 8 or state_code == 11 or state_code == 5 or state_code == 29:
         offset = 10.5

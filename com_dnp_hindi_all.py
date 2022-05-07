@@ -363,8 +363,8 @@ def create_first_page(pdf):
         pdf.cell(40, 20, "NA", 0, 0, 'L')
 
     # source
-    pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=247.5, h=3)
-    pdf.image("./resources/hindi/hn_1_source_2.png", x=10, y=250.5, h=10)
+    # pdf.image("./resources/hindi/hn_1_source_1.png", x=10, y=247.5, h=3)
+    pdf.image("./resources/hindi/hn_1_source_2.png", x=10.5, y=247.5, h=13.5)
     # Horizontal line
     pdf.set_draw_color(109, 111, 113)
     pdf.set_line_width(0.75)
