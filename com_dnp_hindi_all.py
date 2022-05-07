@@ -386,16 +386,20 @@ def create_first_page(pdf):
     # The State name (in English) is NOT a monospaced font. Hence, for each state name, it takes different horizontal size.
     # So, for each state, the offset value has to be adjusted as given below.
     state_code = int(district[2])
-    if state_code == 42:
-        offset = 9
-    if state_code == 9:
+    if (state_code == 42):
+        offset = 8.5
+    elif (state_code == 9) or (state_code == 22) or (state_code == 16):
         offset = 9.5
-    elif state_code == 35 or state_code == 12 or state_code == 10 or state_code == 22 or state_code == 24 or state_code == 32 or state_code == 16:
+    elif (state_code == 8) or (state_code == 35) or (state_code == 12) or (state_code == 10) or (state_code == 24) or (state_code == 32) or (state_code == 7):
         offset = 10
-    elif state_code == 8 or state_code == 11 or state_code == 5 or state_code == 29:
+    elif (state_code == 11) or (state_code == 29) or (state_code == 28) or (state_code == 4) or (state_code == 2) or (state_code == 34) or (state_code == 5):
         offset = 10.5
-    elif state_code == 18 or state_code == 30 or state_code == 1 or state_code == 31 or state_code == 23 or state_code == 17 or state_code == 15:
+    elif (state_code == 23) or (state_code == 17) or (state_code == 15) or (state_code == 30):
+        offset = 11.5
+    elif (state_code == 18) or (state_code == 31):
         offset = 12
+    elif (state_code == 1):
+        offset = 12.5
     else:
         offset = 11
 
