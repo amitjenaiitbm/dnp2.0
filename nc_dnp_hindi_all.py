@@ -345,7 +345,7 @@ def create_second_page(pdf):
     draw_gridlines(pdf, ch_lollipop_gap, 19, 118)
 
     # Put the list of indicators
-    pdf.image("./resources/hindi/hn_2_02.png", x=17, y=19, h=97)
+    pdf.image("./resources/hindi/hn_2_02.png", x=19, y=20, h=95)
 
     # Put the lollipops
     # ch_lbw = "Low-birth weight"
@@ -448,7 +448,7 @@ def create_second_page(pdf):
     pdf.image("./resources/hindi/hn_NA.png", x=93, y=269, h=3.5)
 
     # Bottom Points of discussion grey bar
-    pdf.image("./resources/hindi/hn_2_09.png", x=7, y=273, h=15)
+    pdf.image("./resources/hindi/hn_2_09.png", x=7, y=273, h=15.25)
 
     #Page number-2
     #Left horizontal line
@@ -708,7 +708,7 @@ def create_fourth_page(pdf):
     draw_gridlines(pdf, co_lollipop_gap, 23, 256)
 
     #Put the indicators
-    pdf.image("./resources/hindi/hn_4_03.png", x=45, y=25, h=228.5)
+    pdf.image("./resources/hindi/hn_4_03.png", x=45, y=25, h=229.5)
 
     # Top section
     # fp_sat = "Demand for FP satisfied"
